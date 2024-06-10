@@ -188,10 +188,10 @@ public class MenuAwal extends javax.swing.JFrame {
     }//GEN-LAST:event_LogInActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
-       MenuAwal1 MenuAwal1Frame = new MenuAwal1();
-        MenuAwal1Frame.setVisible(true);
-        MenuAwal1Frame.pack();
-        MenuAwal1Frame.setLocationRelativeTo(null);
+       MenuAwal2 MenuAwal2Frame = new MenuAwal2();
+        MenuAwal2Frame.setVisible(true);
+        MenuAwal2Frame.pack();
+        MenuAwal2Frame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_NextActionPerformed
 

@@ -9,8 +9,8 @@ import static javax.swing.JOptionPane.showMessageDialog;
 import main_aplikasiBankSampah.*;
 import javax.swing.JOptionPane;
 
-public class MenuAwal1 extends javax.swing.JFrame {
-    public MenuAwal1() {
+public class MenuAwal3 extends javax.swing.JFrame {
+    public MenuAwal3() {
          initComponents();
     }
     /**
@@ -26,15 +26,19 @@ public class MenuAwal1 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         LogIn = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         Next = new javax.swing.JButton();
         Previous = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(80, 98, 58));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,26 +63,7 @@ public class MenuAwal1 extends javax.swing.JFrame {
         });
         jPanel1.add(LogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 20, -1, 30));
 
-        jPanel2.setBackground(new java.awt.Color(219, 231, 201));
-
-        jLabel2.setText("TATA KELOLA SAMPAH");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(351, 351, 351)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 66));
 
         jPanel3.setBackground(new java.awt.Color(120, 148, 97));
 
@@ -110,30 +95,57 @@ public class MenuAwal1 extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(9, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Next)
                     .addComponent(Previous))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 896, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 555, 900, 50));
+
+        jPanel2.setBackground(new java.awt.Color(219, 231, 201));
+
+        jLabel7.setFont(new java.awt.Font("Poppins ExtraBold", 1, 18)); // NOI18N
+        jLabel7.setText("TATA KELOLA SAMPAH");
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addContainerGap(681, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(105, 105, 105))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel2)
+                .addGap(77, 77, 77)
+                .addComponent(jLabel3)
+                .addGap(100, 100, 100)
+                .addComponent(jLabel4)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 62, 900, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,17 +160,14 @@ public class MenuAwal1 extends javax.swing.JFrame {
     }//GEN-LAST:event_LogInActionPerformed
 
     private void NextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextActionPerformed
+       
+    }//GEN-LAST:event_NextActionPerformed
+
+    private void PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousActionPerformed
         MenuAwal2 MenuAwal2Frame = new MenuAwal2();
         MenuAwal2Frame.setVisible(true);
         MenuAwal2Frame.pack();
         MenuAwal2Frame.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_NextActionPerformed
-
-    private void PreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PreviousActionPerformed
-        MenuAwal MenuAwalFrame = new MenuAwal();
-        MenuAwalFrame.setVisible(true);
-        MenuAwalFrame.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_PreviousActionPerformed
 
@@ -172,7 +181,10 @@ public class MenuAwal1 extends javax.swing.JFrame {
     private javax.swing.JButton Previous;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
