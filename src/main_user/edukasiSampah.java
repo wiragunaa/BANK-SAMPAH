@@ -28,15 +28,17 @@ public class edukasiSampah extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        penukaranpoin_name = new javax.swing.JLabel();
+        penukaransampah = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        edukasi_name = new javax.swing.JLabel();
+        edukasi = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         label_pengaturan = new javax.swing.JLabel();
-        jadwal_name1 = new javax.swing.JLabel();
+        jadwal = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        logout_name = new javax.swing.JLabel();
-        dashboard_name1 = new javax.swing.JLabel();
+        profil = new javax.swing.JLabel();
+        dashboard = new javax.swing.JLabel();
+        logout = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         username_display = new javax.swing.JLabel();
@@ -63,40 +65,40 @@ public class edukasiSampah extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/poin_menu.png"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
-        penukaranpoin_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        penukaranpoin_name.setForeground(new java.awt.Color(255, 255, 255));
-        penukaranpoin_name.setText("Penukaran Sampah");
-        penukaranpoin_name.addMouseListener(new java.awt.event.MouseAdapter() {
+        penukaransampah.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        penukaransampah.setForeground(new java.awt.Color(255, 255, 255));
+        penukaransampah.setText("Penukaran Sampah");
+        penukaransampah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                penukaranpoin_nameMouseClicked(evt);
+                penukaransampahMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                penukaranpoin_nameMouseEntered(evt);
+                penukaransampahMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                penukaranpoin_nameMouseExited(evt);
+                penukaransampahMouseExited(evt);
             }
         });
-        jPanel1.add(penukaranpoin_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, 20));
+        jPanel1.add(penukaransampah, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, 20));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/edukasi_menu.png"))); // NOI18N
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, -1));
 
-        edukasi_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        edukasi_name.setForeground(new java.awt.Color(255, 255, 255));
-        edukasi_name.setText("Edukasi Tentang Sampah");
-        edukasi_name.addMouseListener(new java.awt.event.MouseAdapter() {
+        edukasi.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        edukasi.setForeground(new java.awt.Color(255, 255, 255));
+        edukasi.setText("Edukasi Tentang Sampah");
+        edukasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                edukasi_nameMouseClicked(evt);
+                edukasiMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                edukasi_nameMouseEntered(evt);
+                edukasiMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                edukasi_nameMouseExited(evt);
+                edukasiMouseExited(evt);
             }
         });
-        jPanel1.add(edukasi_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 20));
+        jPanel1.add(edukasi, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 20));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/jadwal_menu.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
@@ -106,56 +108,75 @@ public class edukasiSampah extends javax.swing.JFrame {
         label_pengaturan.setText("Pengaturan Akun");
         jPanel1.add(label_pengaturan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 20));
 
-        jadwal_name1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jadwal_name1.setForeground(new java.awt.Color(255, 255, 255));
-        jadwal_name1.setText("Jadwal Pengambilan Sampah");
-        jadwal_name1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jadwal.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jadwal.setForeground(new java.awt.Color(255, 255, 255));
+        jadwal.setText("Jadwal Pengambilan Sampah");
+        jadwal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jadwal_name1MouseClicked(evt);
+                jadwalMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jadwal_name1MouseEntered(evt);
+                jadwalMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jadwal_name1MouseExited(evt);
+                jadwalMouseExited(evt);
             }
         });
-        jPanel1.add(jadwal_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
+        jPanel1.add(jadwal, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, 20));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout_menu.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/profile_menu.png"))); // NOI18N
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
 
-        logout_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        logout_name.setForeground(new java.awt.Color(255, 255, 255));
-        logout_name.setText("Logout");
-        logout_name.addMouseListener(new java.awt.event.MouseAdapter() {
+        profil.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        profil.setForeground(new java.awt.Color(255, 255, 255));
+        profil.setText("Profil Pengguna");
+        profil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                logout_nameMouseClicked(evt);
+                profilMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                logout_nameMouseEntered(evt);
+                profilMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                logout_nameMouseExited(evt);
+                profilMouseExited(evt);
             }
         });
-        jPanel1.add(logout_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
+        jPanel1.add(profil, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
 
-        dashboard_name1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        dashboard_name1.setForeground(new java.awt.Color(255, 255, 255));
-        dashboard_name1.setText("Dashboard");
-        dashboard_name1.addMouseListener(new java.awt.event.MouseAdapter() {
+        dashboard.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        dashboard.setForeground(new java.awt.Color(255, 255, 255));
+        dashboard.setText("Dashboard");
+        dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dashboard_name1MouseClicked(evt);
+                dashboardMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                dashboard_name1MouseEntered(evt);
+                dashboardMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                dashboard_name1MouseExited(evt);
+                dashboardMouseExited(evt);
             }
         });
-        jPanel1.add(dashboard_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
+        jPanel1.add(dashboard, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
+
+        logout.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+        logout.setText("Logout");
+        logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logoutMouseExited(evt);
+            }
+        });
+        jPanel1.add(logout, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, 20));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout_menu.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(241, 204, 27));
         jPanel2.setPreferredSize(new java.awt.Dimension(270, 150));
@@ -202,16 +223,16 @@ public class edukasiSampah extends javax.swing.JFrame {
 
         judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Edukasi Sampah");
+        judul_halaman.setText("Halaman Edukasi");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap(74, Short.MAX_VALUE)
                 .addComponent(judul_halaman)
-                .addGap(57, 57, 57))
+                .addGap(42, 42, 42))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +268,83 @@ public class edukasiSampah extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logout_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseClicked
+    private void profilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseClicked
+        dispose();
+        profilPengguna profilPage = new profilPengguna(username_pengguna, fullname_pengguna);
+        profilPage.setVisible(true);
+        profilPage.setLocationRelativeTo(null);
+        
+    }//GEN-LAST:event_profilMouseClicked
+
+    private void profilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseEntered
+        profil.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_profilMouseEntered
+
+    private void profilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseExited
+        profil.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_profilMouseExited
+
+    private void dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseEntered
+        dashboard.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_dashboardMouseEntered
+
+    private void dashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseExited
+        dashboard.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_dashboardMouseExited
+
+    private void penukaransampahMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaransampahMouseEntered
+        penukaransampah.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_penukaransampahMouseEntered
+
+    private void penukaransampahMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaransampahMouseExited
+        penukaransampah.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_penukaransampahMouseExited
+
+    private void edukasiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasiMouseEntered
+        edukasi.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_edukasiMouseEntered
+
+    private void edukasiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasiMouseExited
+        edukasi.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_edukasiMouseExited
+
+    private void jadwalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseEntered
+        jadwal.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_jadwalMouseEntered
+
+    private void jadwalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseExited
+        jadwal.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_jadwalMouseExited
+
+    private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
+        dispose();
+        edukasiSampah dashboardPage = new edukasiSampah(username_pengguna, fullname_pengguna);
+        dashboardPage.setVisible(true);
+        dashboardPage.setLocationRelativeTo(null);
+    }//GEN-LAST:event_dashboardMouseClicked
+
+    private void penukaransampahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaransampahMouseClicked
+        dispose();
+        penukaranSampah penukaranPage = new penukaranSampah(username_pengguna, fullname_pengguna);
+        penukaranPage.setVisible(true);
+        penukaranPage.setLocationRelativeTo(null);
+    }//GEN-LAST:event_penukaransampahMouseClicked
+
+    private void edukasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasiMouseClicked
+        dispose();
+        edukasiSampah edukasiPage = new edukasiSampah(username_pengguna, fullname_pengguna);
+        edukasiPage.setVisible(true);
+        edukasiPage.setLocationRelativeTo(null);
+    }//GEN-LAST:event_edukasiMouseClicked
+
+    private void jadwalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseClicked
+        dispose();
+        jadwalPengambilan jadwalPage = new jadwalPengambilan(username_pengguna, fullname_pengguna);
+        jadwalPage.setVisible(true);
+        jadwalPage.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jadwalMouseClicked
+
+    private void logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseClicked
         int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin logout?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if(answer==0){
             dispose();
@@ -255,83 +352,23 @@ public class edukasiSampah extends javax.swing.JFrame {
             LoginPage.setVisible(true);
             LoginPage.setLocationRelativeTo(null);
         }
-    }//GEN-LAST:event_logout_nameMouseClicked
+    }//GEN-LAST:event_logoutMouseClicked
 
-    private void logout_nameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseEntered
-        logout_name.setForeground(new java.awt.Color(30, 30, 123));
-    }//GEN-LAST:event_logout_nameMouseEntered
+    private void logoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseEntered
+        logout.setForeground(new java.awt.Color(30, 30, 123));
+    }//GEN-LAST:event_logoutMouseEntered
 
-    private void logout_nameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseExited
-        logout_name.setForeground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_logout_nameMouseExited
-
-    private void dashboard_name1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseEntered
-        dashboard_name1.setForeground(new java.awt.Color(30, 30, 123));
-    }//GEN-LAST:event_dashboard_name1MouseEntered
-
-    private void dashboard_name1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseExited
-        dashboard_name1.setForeground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_dashboard_name1MouseExited
-
-    private void penukaranpoin_nameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaranpoin_nameMouseEntered
-        penukaranpoin_name.setForeground(new java.awt.Color(30, 30, 123));
-    }//GEN-LAST:event_penukaranpoin_nameMouseEntered
-
-    private void penukaranpoin_nameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaranpoin_nameMouseExited
-        penukaranpoin_name.setForeground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_penukaranpoin_nameMouseExited
-
-    private void edukasi_nameMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasi_nameMouseEntered
-        edukasi_name.setForeground(new java.awt.Color(30, 30, 123));
-    }//GEN-LAST:event_edukasi_nameMouseEntered
-
-    private void edukasi_nameMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasi_nameMouseExited
-        edukasi_name.setForeground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_edukasi_nameMouseExited
-
-    private void jadwal_name1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwal_name1MouseEntered
-        jadwal_name1.setForeground(new java.awt.Color(30, 30, 123));
-    }//GEN-LAST:event_jadwal_name1MouseEntered
-
-    private void jadwal_name1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwal_name1MouseExited
-        jadwal_name1.setForeground(new java.awt.Color(255, 255, 255));
-    }//GEN-LAST:event_jadwal_name1MouseExited
-
-    private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
-        dispose();
-        edukasiSampah dashboardPage = new edukasiSampah(username_pengguna, fullname_pengguna);
-        dashboardPage.setVisible(true);
-        dashboardPage.setLocationRelativeTo(null);
-    }//GEN-LAST:event_dashboard_name1MouseClicked
-
-    private void penukaranpoin_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaranpoin_nameMouseClicked
-        dispose();
-        penukaranSampah penukaranPage = new penukaranSampah(username_pengguna, fullname_pengguna);
-        penukaranPage.setVisible(true);
-        penukaranPage.setLocationRelativeTo(null);
-    }//GEN-LAST:event_penukaranpoin_nameMouseClicked
-
-    private void edukasi_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasi_nameMouseClicked
-        dispose();
-        edukasiSampah edukasiPage = new edukasiSampah(username_pengguna, fullname_pengguna);
-        edukasiPage.setVisible(true);
-        edukasiPage.setLocationRelativeTo(null);
-    }//GEN-LAST:event_edukasi_nameMouseClicked
-
-    private void jadwal_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwal_name1MouseClicked
-        dispose();
-        jadwalPengambilan jadwalPage = new jadwalPengambilan(username_pengguna, fullname_pengguna);
-        jadwalPage.setVisible(true);
-        jadwalPage.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jadwal_name1MouseClicked
+    private void logoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutMouseExited
+        logout.setForeground(new java.awt.Color(255, 255, 255));
+    }//GEN-LAST:event_logoutMouseExited
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel dashboard_name1;
-    private javax.swing.JLabel edukasi_name;
+    private javax.swing.JLabel dashboard;
+    private javax.swing.JLabel edukasi;
     private javax.swing.JLabel fullname_display;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -341,14 +378,16 @@ public class edukasiSampah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel jadwal_name1;
+    private javax.swing.JLabel jadwal;
     private javax.swing.JLabel judul_halaman;
     private javax.swing.JLabel label_pengaturan;
-    private javax.swing.JLabel logout_name;
-    private javax.swing.JLabel penukaranpoin_name;
+    private javax.swing.JLabel logout;
+    private javax.swing.JLabel penukaransampah;
+    private javax.swing.JLabel profil;
     private javax.swing.JLabel username_display;
     // End of variables declaration//GEN-END:variables
 }

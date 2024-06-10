@@ -3,10 +3,10 @@ package main_user;
 import javax.swing.JOptionPane;
 import Login_Register.*;
 
-public class jadwalPengambilan extends javax.swing.JFrame {
+public class profilPengguna extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
-    public jadwalPengambilan(String username, String fullname) {
+    public profilPengguna(String username, String fullname) {
         initComponents();
         username_pengguna = username;
         fullname_pengguna = fullname;
@@ -223,14 +223,14 @@ public class jadwalPengambilan extends javax.swing.JFrame {
 
         judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Halaman Jadwal");
+        judul_halaman.setText("Halaman Profil");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(82, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(judul_halaman)
                 .addGap(42, 42, 42))
         );
@@ -318,7 +318,7 @@ public class jadwalPengambilan extends javax.swing.JFrame {
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         dispose();
-        jadwalPengambilan dashboardPage = new jadwalPengambilan(username_pengguna, fullname_pengguna);
+        profilPengguna dashboardPage = new profilPengguna(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboardMouseClicked
