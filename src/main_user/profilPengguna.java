@@ -2,6 +2,9 @@ package main_user;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class profilPengguna extends javax.swing.JFrame {
     String username_pengguna_temp;
@@ -10,6 +13,31 @@ public class profilPengguna extends javax.swing.JFrame {
         initComponents();
         username_pengguna_temp = username;
         fullname_pengguna_temp = fullname;
+        
+        // set jtextfield yang ada
+        username_field.setText(username_pengguna_temp);
+        nama_lengkap_field.setText(fullname_pengguna_temp);
+        
+        // mengisi data yang sebelumnya sudah terisi
+        try{
+            String SUrl, SUser, SPass, query;
+            
+            // isi sesuai dengan database
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah"; // UBAH SESUAI DATABASE
+            SUser = "root";
+            SPass = "";
+            
+            // koneksikan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            
+            // buat query untuk melihat jika ada yang sudah terisi sebelumnya
+            query = "SELECT * FROM tb_pengguna WHERE username_pengguna= '"+username+"'";
+            
+        } catch(Exception e){
+           System.out.println("Error!" + e.getMessage()); 
+        }
     }
 
     /**
@@ -42,7 +70,7 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        nama_lengkap_field1 = new javax.swing.JTextField();
+        nama_lengkap_field = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         alamat_field = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -50,7 +78,11 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         kecamatan_field = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        keluaran_field = new javax.swing.JTextField();
+        kelurahan_field = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        notelp_field = new javax.swing.JTextField();
+        LoginBtn = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,8 +227,10 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel10.setText("Edit Profile");
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
+        username_field.setEditable(false);
         username_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         username_field.setForeground(new java.awt.Color(102, 102, 102));
+        username_field.setFocusable(false);
         username_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 username_fieldActionPerformed(evt);
@@ -208,14 +242,16 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel11.setText("Username");
         jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        nama_lengkap_field1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nama_lengkap_field1.setForeground(new java.awt.Color(102, 102, 102));
-        nama_lengkap_field1.addActionListener(new java.awt.event.ActionListener() {
+        nama_lengkap_field.setEditable(false);
+        nama_lengkap_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nama_lengkap_field.setForeground(new java.awt.Color(102, 102, 102));
+        nama_lengkap_field.setFocusable(false);
+        nama_lengkap_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nama_lengkap_field1ActionPerformed(evt);
+                nama_lengkap_fieldActionPerformed(evt);
             }
         });
-        jPanel2.add(nama_lengkap_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 250, 40));
+        jPanel2.add(nama_lengkap_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 250, 40));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         jLabel12.setText("Alamat Lengkap");
@@ -260,14 +296,36 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel15.setText("Kelurahan / Desa");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
 
-        keluaran_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        keluaran_field.setForeground(new java.awt.Color(102, 102, 102));
-        keluaran_field.addActionListener(new java.awt.event.ActionListener() {
+        kelurahan_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kelurahan_field.setForeground(new java.awt.Color(102, 102, 102));
+        kelurahan_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                keluaran_fieldActionPerformed(evt);
+                kelurahan_fieldActionPerformed(evt);
             }
         });
-        jPanel2.add(keluaran_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 240, 40));
+        jPanel2.add(kelurahan_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 240, 40));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel16.setText("Nomor Telepon");
+        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 500, -1, -1));
+
+        notelp_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        notelp_field.setForeground(new java.awt.Color(102, 102, 102));
+        notelp_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notelp_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(notelp_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 240, 40));
+
+        LoginBtn.setBackground(new java.awt.Color(120, 148, 97));
+        LoginBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        LoginBtn.setForeground(new java.awt.Color(255, 255, 255));
+        LoginBtn.setText("UBAH DATA");
+        jPanel2.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 600, 210, 50));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/gambar_fotoprofil_rz.png"))); // NOI18N
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -382,12 +440,12 @@ public class profilPengguna extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutMouseExited
 
     private void username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_fieldActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_username_fieldActionPerformed
 
-    private void nama_lengkap_field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_lengkap_field1ActionPerformed
+    private void nama_lengkap_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_lengkap_fieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nama_lengkap_field1ActionPerformed
+    }//GEN-LAST:event_nama_lengkap_fieldActionPerformed
 
     private void alamat_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamat_fieldActionPerformed
         // TODO add your handling code here:
@@ -401,15 +459,20 @@ public class profilPengguna extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_kecamatan_fieldActionPerformed
 
-    private void keluaran_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluaran_fieldActionPerformed
+    private void kelurahan_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kelurahan_fieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_keluaran_fieldActionPerformed
+    }//GEN-LAST:event_kelurahan_fieldActionPerformed
+
+    private void notelp_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notelp_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_notelp_fieldActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton LoginBtn;
     private javax.swing.JTextField alamat_field;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel edukasi;
@@ -420,6 +483,8 @@ public class profilPengguna extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -433,10 +498,11 @@ public class profilPengguna extends javax.swing.JFrame {
     private javax.swing.JLabel jadwal;
     private javax.swing.JTextField kabupaten_field;
     private javax.swing.JTextField kecamatan_field;
-    private javax.swing.JTextField keluaran_field;
+    private javax.swing.JTextField kelurahan_field;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout;
-    private javax.swing.JTextField nama_lengkap_field1;
+    private javax.swing.JTextField nama_lengkap_field;
+    private javax.swing.JTextField notelp_field;
     private javax.swing.JLabel penukaransampah;
     private javax.swing.JLabel profil;
     private javax.swing.JTextField username_field;
