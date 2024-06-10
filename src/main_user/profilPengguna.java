@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import Login_Register.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class profilPengguna extends javax.swing.JFrame {
@@ -35,6 +36,15 @@ public class profilPengguna extends javax.swing.JFrame {
             // buat query untuk melihat jika ada yang sudah terisi sebelumnya
             query = "SELECT * FROM tb_pengguna WHERE username_pengguna= '"+username+"'";
             
+            // cek hasil query
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                alamat_field.setText(rs.getString("alamat_pengguna"));
+                kabupaten_field.setText(rs.getString("kabupaten"));
+                kecamatan_field.setText(rs.getString("kecamatan"));
+                kelurahan_field.setText(rs.getString("kelurahan"));
+                notelp_field.setText(rs.getString("nomor_telepon"));
+            }
         } catch(Exception e){
            System.out.println("Error!" + e.getMessage()); 
         }
@@ -322,6 +332,11 @@ public class profilPengguna extends javax.swing.JFrame {
         LoginBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         LoginBtn.setForeground(new java.awt.Color(255, 255, 255));
         LoginBtn.setText("UBAH DATA");
+        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginBtnActionPerformed(evt);
+            }
+        });
         jPanel2.add(LoginBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 600, 210, 50));
 
         jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/gambar_fotoprofil_rz.png"))); // NOI18N
@@ -395,7 +410,7 @@ public class profilPengguna extends javax.swing.JFrame {
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         dispose();
-        profilPengguna dashboardPage = new profilPengguna(username_pengguna_temp, fullname_pengguna_temp);
+        Dashboard dashboardPage = new Dashboard(username_pengguna_temp, fullname_pengguna_temp);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboardMouseClicked
@@ -466,6 +481,60 @@ public class profilPengguna extends javax.swing.JFrame {
     private void notelp_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notelp_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_notelp_fieldActionPerformed
+
+    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin mengubah data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer==0){
+            try{
+                String SUrl, SUser, SPass, query;
+                String alamat, kabupaten, kecamatan, kelurahan, notelp;
+
+                // isi sesuai dengan database
+                SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah"; // UBAH SESUAI DATABASE
+                SUser = "root";
+                SPass = "";
+
+                // koneksikan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+
+                // Mengisi variabel
+                alamat = alamat_field.getText();
+                kabupaten = kabupaten_field.getText();
+                kecamatan = kecamatan_field.getText();
+                kelurahan = kelurahan_field.getText();
+                notelp = notelp_field.getText();
+
+                // buat query untuk mengupdate database
+                // update alamat pengguna
+                query = "UPDATE tb_pengguna SET alamat_pengguna = '"+alamat+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
+                st.execute(query);
+
+                // update kabupaten pengguna
+                query = "UPDATE tb_pengguna SET kabupaten = '"+kabupaten+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
+                st.execute(query);
+
+                // update kecamatan pengguna
+                query = "UPDATE tb_pengguna SET kecamatan = '"+kecamatan+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
+                st.execute(query);
+
+                // update kelurahan pengguna
+                query = "UPDATE tb_pengguna SET kelurahan = '"+kelurahan+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
+                st.execute(query);
+
+                // update notelp pengguna
+                query = "UPDATE tb_pengguna SET nomor_telepon = '"+notelp+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
+                st.execute(query);
+                dispose();
+                profilPengguna profilPage = new profilPengguna(username_pengguna_temp, fullname_pengguna_temp);
+                profilPage.setVisible(true);
+                profilPage.setLocationRelativeTo(null);
+            } catch(Exception e){
+               System.out.println("Error!" + e.getMessage()); 
+            }
+        }
+    }//GEN-LAST:event_LoginBtnActionPerformed
 
     /**
      * @param args the command line arguments
