@@ -4,14 +4,12 @@ import javax.swing.JOptionPane;
 import Login_Register.*;
 
 public class profilPengguna extends javax.swing.JFrame {
-    String username_pengguna;
-    String fullname_pengguna;
+    String username_pengguna_temp;
+    String fullname_pengguna_temp;
     public profilPengguna(String username, String fullname) {
         initComponents();
-        username_pengguna = username;
-        fullname_pengguna = fullname;
-        username_display.setText("@" + username);
-        fullname_display.setText(fullname);
+        username_pengguna_temp = username;
+        fullname_pengguna_temp = fullname;
     }
 
     /**
@@ -41,10 +39,18 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        username_display = new javax.swing.JLabel();
-        fullname_display = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        judul_halaman = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        username_field = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        nama_lengkap_field1 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        alamat_field = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        kabupaten_field = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        kecamatan_field = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        keluaran_field = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,69 +184,90 @@ public class profilPengguna extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout_menu.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel2.setPreferredSize(new java.awt.Dimension(270, 150));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/human_logo_putih.png"))); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel3.setText("Nama Lengkap");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, -1, -1));
 
-        username_display.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        username_display.setForeground(new java.awt.Color(255, 255, 255));
-        username_display.setText("@guest");
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        jLabel10.setText("Edit Profile");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
 
-        fullname_display.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        fullname_display.setForeground(new java.awt.Color(255, 255, 255));
-        fullname_display.setText("guest_full_name");
+        username_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        username_field.setForeground(new java.awt.Color(102, 102, 102));
+        username_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(username_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 240, 40));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullname_display)
-                            .addComponent(username_display)))
-                    .addComponent(jLabel3))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(username_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fullname_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel11.setText("Username");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
+        nama_lengkap_field1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nama_lengkap_field1.setForeground(new java.awt.Color(102, 102, 102));
+        nama_lengkap_field1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nama_lengkap_field1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(nama_lengkap_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 250, 40));
 
-        judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Halaman Profil");
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel12.setText("Alamat Lengkap");
+        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
-                .addComponent(judul_halaman)
-                .addGap(42, 42, 42))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(judul_halaman, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
+        alamat_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        alamat_field.setForeground(new java.awt.Color(102, 102, 102));
+        alamat_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alamat_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(alamat_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 560, 40));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel13.setText("Kabupaten / Kota");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, -1, 20));
+
+        kabupaten_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kabupaten_field.setForeground(new java.awt.Color(102, 102, 102));
+        kabupaten_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kabupaten_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(kabupaten_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 240, 40));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel14.setText("Kecamatan");
+        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, -1, -1));
+
+        kecamatan_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kecamatan_field.setForeground(new java.awt.Color(102, 102, 102));
+        kecamatan_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kecamatan_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(kecamatan_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 240, 40));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel15.setText("Kelurahan / Desa");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+
+        keluaran_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        keluaran_field.setForeground(new java.awt.Color(102, 102, 102));
+        keluaran_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keluaran_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(keluaran_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 440, 240, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -248,21 +275,13 @@ public class profilPengguna extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -270,7 +289,7 @@ public class profilPengguna extends javax.swing.JFrame {
 
     private void profilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseClicked
         dispose();
-        profilPengguna profilPage = new profilPengguna(username_pengguna, fullname_pengguna);
+        profilPengguna profilPage = new profilPengguna(username_pengguna_temp, fullname_pengguna_temp);
         profilPage.setVisible(true);
         profilPage.setLocationRelativeTo(null);
         
@@ -318,28 +337,28 @@ public class profilPengguna extends javax.swing.JFrame {
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         dispose();
-        profilPengguna dashboardPage = new profilPengguna(username_pengguna, fullname_pengguna);
+        profilPengguna dashboardPage = new profilPengguna(username_pengguna_temp, fullname_pengguna_temp);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboardMouseClicked
 
     private void penukaransampahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaransampahMouseClicked
         dispose();
-        penukaranSampah penukaranPage = new penukaranSampah(username_pengguna, fullname_pengguna);
+        penukaranSampah penukaranPage = new penukaranSampah(username_pengguna_temp, fullname_pengguna_temp);
         penukaranPage.setVisible(true);
         penukaranPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_penukaransampahMouseClicked
 
     private void edukasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edukasiMouseClicked
         dispose();
-        edukasiSampah edukasiPage = new edukasiSampah(username_pengguna, fullname_pengguna);
+        edukasiSampah edukasiPage = new edukasiSampah(username_pengguna_temp, fullname_pengguna_temp);
         edukasiPage.setVisible(true);
         edukasiPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_edukasiMouseClicked
 
     private void jadwalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwalMouseClicked
         dispose();
-        jadwalPengambilan jadwalPage = new jadwalPengambilan(username_pengguna, fullname_pengguna);
+        jadwalPengambilan jadwalPage = new jadwalPengambilan(username_pengguna_temp, fullname_pengguna_temp);
         jadwalPage.setVisible(true);
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_jadwalMouseClicked
@@ -362,15 +381,45 @@ public class profilPengguna extends javax.swing.JFrame {
         logout.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_logoutMouseExited
 
+    private void username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_fieldActionPerformed
+
+    private void nama_lengkap_field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_lengkap_field1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nama_lengkap_field1ActionPerformed
+
+    private void alamat_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alamat_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alamat_fieldActionPerformed
+
+    private void kabupaten_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kabupaten_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kabupaten_fieldActionPerformed
+
+    private void kecamatan_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kecamatan_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kecamatan_fieldActionPerformed
+
+    private void keluaran_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keluaran_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_keluaran_fieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField alamat_field;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel edukasi;
-    private javax.swing.JLabel fullname_display;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -381,13 +430,15 @@ public class profilPengguna extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jadwal;
-    private javax.swing.JLabel judul_halaman;
+    private javax.swing.JTextField kabupaten_field;
+    private javax.swing.JTextField kecamatan_field;
+    private javax.swing.JTextField keluaran_field;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout;
+    private javax.swing.JTextField nama_lengkap_field1;
     private javax.swing.JLabel penukaransampah;
     private javax.swing.JLabel profil;
-    private javax.swing.JLabel username_display;
+    private javax.swing.JTextField username_field;
     // End of variables declaration//GEN-END:variables
 }
