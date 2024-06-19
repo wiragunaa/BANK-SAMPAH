@@ -82,7 +82,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
         label_pengaturan.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_pengaturan.setForeground(new java.awt.Color(255, 255, 255));
         label_pengaturan.setText("Pengaturan Akun");
-        jPanel1.add(label_pengaturan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 20));
+        jPanel1.add(label_pengaturan, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, 20));
 
         jadwal_name1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jadwal_name1.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,7 +98,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jPanel1.add(jadwal_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 20));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout_menu.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
 
         logout_name.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         logout_name.setForeground(new java.awt.Color(255, 255, 255));
@@ -114,7 +114,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
                 logout_nameMouseExited(evt);
             }
         });
-        jPanel1.add(logout_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 20));
+        jPanel1.add(logout_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, 20));
 
         dashboard_name1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         dashboard_name1.setForeground(new java.awt.Color(255, 255, 255));
