@@ -44,7 +44,9 @@ public class Dashboard extends javax.swing.JFrame {
         username_display = new javax.swing.JLabel();
         fullname_display = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        judul_halaman = new javax.swing.JLabel();
+        fullname_display1 = new javax.swing.JLabel();
+        fullname_display2 = new javax.swing.JLabel();
+        fullname_display3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,7 +206,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(fullname_display)
                             .addComponent(username_display)))
                     .addComponent(jLabel3))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,27 +222,22 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(241, 204, 27));
         jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Halaman Dashboard");
+        fullname_display1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        fullname_display1.setForeground(new java.awt.Color(255, 255, 255));
+        fullname_display1.setText("Kumpulkan Sampah:");
+        jPanel3.add(fullname_display1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(judul_halaman)
-                .addGap(42, 42, 42))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(judul_halaman, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
+        fullname_display2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        fullname_display2.setForeground(new java.awt.Color(255, 255, 255));
+        fullname_display2.setText("Minggu, 31 Desember 2024");
+        jPanel3.add(fullname_display2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 320, 30));
+
+        fullname_display3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        fullname_display3.setForeground(new java.awt.Color(255, 255, 255));
+        fullname_display3.setText("Organik");
+        jPanel3.add(fullname_display3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -249,9 +246,9 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
@@ -370,6 +367,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel edukasi;
     private javax.swing.JLabel fullname_display;
+    private javax.swing.JLabel fullname_display1;
+    private javax.swing.JLabel fullname_display2;
+    private javax.swing.JLabel fullname_display3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -383,7 +383,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jadwal;
-    private javax.swing.JLabel judul_halaman;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel penukaransampah;
