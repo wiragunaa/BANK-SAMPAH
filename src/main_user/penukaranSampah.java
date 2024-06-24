@@ -318,7 +318,7 @@ public class penukaranSampah extends javax.swing.JFrame {
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         dispose();
-        penukaranSampah dashboardPage = new penukaranSampah(username_pengguna, fullname_pengguna);
+        Dashboard dashboardPage = new Dashboard(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboardMouseClicked

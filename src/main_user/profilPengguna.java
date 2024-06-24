@@ -526,10 +526,11 @@ public class profilPengguna extends javax.swing.JFrame {
                 // update notelp pengguna
                 query = "UPDATE tb_pengguna SET nomor_telepon = '"+notelp+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
                 st.execute(query);
+                
                 dispose();
-                profilPengguna profilPage = new profilPengguna(username_pengguna_temp, fullname_pengguna_temp);
-                profilPage.setVisible(true);
-                profilPage.setLocationRelativeTo(null);
+                Dashboard dashboardPage = new Dashboard(username_pengguna_temp, fullname_pengguna_temp);
+                dashboardPage.setVisible(true);
+                dashboardPage.setLocationRelativeTo(null);
             } catch(Exception e){
                System.out.println("Error!" + e.getMessage()); 
             }
