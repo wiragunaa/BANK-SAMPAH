@@ -2,6 +2,12 @@ package admin;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Dashboard_admin extends javax.swing.JFrame {
     String username_pengguna;
@@ -42,6 +48,19 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         judul_halaman1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        judul_halaman2 = new javax.swing.JLabel();
+        kodeunik_field = new javax.swing.JTextField();
+        kodeunik_label = new javax.swing.JLabel();
+        kodeunik_field1 = new javax.swing.JTextField();
+        kodeunik_label1 = new javax.swing.JLabel();
+        kodeunik_label2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        catatan_field = new javax.swing.JTextArea();
+        kodeunik_label3 = new javax.swing.JLabel();
+        kodeunik_field2 = new javax.swing.JTextField();
+        tambah_button = new javax.swing.JButton();
+        tambah_button1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,17 +240,103 @@ public class Dashboard_admin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        judul_halaman2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        judul_halaman2.setText("PENCARIAN DATA");
+        jPanel5.add(judul_halaman2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
+
+        kodeunik_field.setEditable(false);
+        kodeunik_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kodeunik_field.setForeground(new java.awt.Color(102, 102, 102));
+        kodeunik_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kodeunik_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(kodeunik_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 190, 40));
+
+        kodeunik_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label.setText("Username");
+        jPanel5.add(kodeunik_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+
+        kodeunik_field1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kodeunik_field1.setForeground(new java.awt.Color(102, 102, 102));
+        kodeunik_field1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kodeunik_field1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(kodeunik_field1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, 280, 40));
+
+        kodeunik_label1.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label1.setText("Kode Unik");
+        jPanel5.add(kodeunik_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 60, -1, -1));
+
+        kodeunik_label2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label2.setText("List Barang");
+        jPanel5.add(kodeunik_label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, -1, -1));
+
+        catatan_field.setEditable(false);
+        catatan_field.setColumns(20);
+        catatan_field.setRows(5);
+        jScrollPane1.setViewportView(catatan_field);
+
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 580, -1));
+
+        kodeunik_label3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label3.setText("Status");
+        jPanel5.add(kodeunik_label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, -1, -1));
+
+        kodeunik_field2.setEditable(false);
+        kodeunik_field2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        kodeunik_field2.setForeground(new java.awt.Color(102, 102, 102));
+        kodeunik_field2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kodeunik_field2ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(kodeunik_field2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 190, 40));
+
+        tambah_button.setBackground(new java.awt.Color(120, 148, 97));
+        tambah_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tambah_button.setForeground(new java.awt.Color(255, 255, 255));
+        tambah_button.setText("KONFIRMASI");
+        tambah_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambah_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(tambah_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 190, -1));
+
+        tambah_button1.setBackground(new java.awt.Color(120, 148, 97));
+        tambah_button1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tambah_button1.setForeground(new java.awt.Color(255, 255, 255));
+        tambah_button1.setText("CARI DATA!");
+        tambah_button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tambah_button1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(tambah_button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +346,8 @@ public class Dashboard_admin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -310,11 +416,50 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_jadwal_name1MouseClicked
 
+    private void kodeunik_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kodeunik_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kodeunik_fieldActionPerformed
+
+    private void kodeunik_field1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kodeunik_field1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kodeunik_field1ActionPerformed
+
+    private void kodeunik_field2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kodeunik_field2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kodeunik_field2ActionPerformed
+
+    private void tambah_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_buttonActionPerformed
+        // deklarasi variabel
+        String username = "", catatan = "", query;
+        String SUrl, SUser, SPass;
+        int poin_tambahan = 0, berat_total = 0;
+
+        // Persiapan database, ganti nama db
+        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+        SUser = "root";
+        SPass = "";
+
+        try{
+            // menghubungkan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            
+        } catch (Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+    }//GEN-LAST:event_tambah_buttonActionPerformed
+
+    private void tambah_button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tambah_button1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea catatan_field;
     private javax.swing.JLabel dashboard_name1;
     private javax.swing.JLabel fullname_display;
     private javax.swing.JLabel jLabel1;
@@ -328,11 +473,23 @@ public class Dashboard_admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jadwal_name1;
     private javax.swing.JLabel judul_halaman1;
+    private javax.swing.JLabel judul_halaman2;
+    private javax.swing.JTextField kodeunik_field;
+    private javax.swing.JTextField kodeunik_field1;
+    private javax.swing.JTextField kodeunik_field2;
+    private javax.swing.JLabel kodeunik_label;
+    private javax.swing.JLabel kodeunik_label1;
+    private javax.swing.JLabel kodeunik_label2;
+    private javax.swing.JLabel kodeunik_label3;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout_name;
     private javax.swing.JLabel penukaranpoin_name;
+    private javax.swing.JButton tambah_button;
+    private javax.swing.JButton tambah_button1;
     private javax.swing.JLabel username_display;
     // End of variables declaration//GEN-END:variables
 }
