@@ -8,8 +8,8 @@ public class edukasiSampah extends javax.swing.JFrame {
     String fullname_pengguna;
     public edukasiSampah(String username, String fullname) {
         initComponents();
-      
-     
+        username_pengguna = username;
+        fullname_pengguna = fullname;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -217,6 +217,8 @@ public class edukasiSampah extends javax.swing.JFrame {
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jTextArea2.setText("- Pisahkan Sampah: \n   Pisahkan sampah berdasarkan jenisnya (organik, anorganik, B3)\n   untuk memudahkan proses pengelolaan.\n\n- Gunakan Tempat Sampah yang Sesuai: \n  Sediakan tempat sampah terpisah untuk masing-masing jenis \n  sampah.\n\n- Edukasi dan Kesadaran Masyarakat: \n   Meningkatkan kesadaran masyarakat tentang pentingnya \n   pengelolaan sampah melalui edukasi dan kampanye lingkungan.\n\n- Kerjasama dengan Pihak Berwenang: \n  Bekerjasama dengan pemerintah dan organisasi lingkungan \n  untuk mendukung program pengelolaan sampah yang efektif.");
+        jTextArea2.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea2.setEnabled(false);
         jScrollPane2.setViewportView(jTextArea2);
 
         jLabel16.setFont(new java.awt.Font("Poppins ExtraBold", 1, 18)); // NOI18N
@@ -230,6 +232,8 @@ public class edukasiSampah extends javax.swing.JFrame {
         jTextArea3.setRows(5);
         jTextArea3.setText("Reduce (Mengurangi): \nMengurangi jumlah sampah yang \ndihasilkan dengan cara menggunakan \nproduk yang tahan lama dan \nmenghindari penggunaan produk sekali\npakai.\n\nReuse (Menggunakan Kembali):\nMenggunakan kembali barang-barang \nyang masih layak pakai untuk \nmengurangi jumlah sampah.\n\nRecycle (Mendaur Ulang): \nMendaur ulang sampah anorganik seperti \nplastik, kertas, dan logam sehingga dapat \ndigunakan kembali sebagai bahan baku.");
         jTextArea3.setBorder(null);
+        jTextArea3.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea3.setEnabled(false);
         jScrollPane3.setViewportView(jTextArea3);
 
         jLabel17.setFont(new java.awt.Font("Poppins ExtraBold", 1, 14)); // NOI18N
@@ -242,6 +246,8 @@ public class edukasiSampah extends javax.swing.JFrame {
         jTextArea4.setColumns(20);
         jTextArea4.setRows(5);
         jTextArea4.setText("Lingkungan: \nSampah yang tidak dikelola dengan baik dapat mencemari tanah, \nair, dan udara. Ini dapat menyebabkan kerusakan ekosistem dan \nbiodiversitas.\n\nKesehatan: \nSampah yang menumpuk dan tidak dikelola dengan baik dapat\nmenjadi sarang penyakit. Sampah yang menumpuk dapat menjadi \ntempat berkembang biak nyamuk yang membawa penyakit seperti \ndemam berdarah.\n\nEstetika: \nPenumpukan sampah mengganggu pemandangan dan dapat \nmenurunkan kualitas hidup di suatu lingkungan.");
+        jTextArea4.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea4.setEnabled(false);
         jScrollPane4.setViewportView(jTextArea4);
 
         jScrollPane5.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -252,6 +258,8 @@ public class edukasiSampah extends javax.swing.JFrame {
         jTextArea5.setRows(5);
         jTextArea5.setText("Tata kelola sampah dilakukan dengan \nmelakukan pemilahan sampah melalui\npengelompokan sampah berdasarkan \njenisnya. ");
         jTextArea5.setBorder(null);
+        jTextArea5.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextArea5.setEnabled(false);
         jScrollPane5.setViewportView(jTextArea5);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -280,14 +288,10 @@ public class edukasiSampah extends javax.swing.JFrame {
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 9, Short.MAX_VALUE)))
                         .addContainerGap())))
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                    .addContainerGap(399, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +305,9 @@ public class edukasiSampah extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
+                        .addGap(9, 9, 9)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -311,16 +317,11 @@ public class edukasiSampah extends javax.swing.JFrame {
                         .addComponent(jScrollPane3))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addComponent(jLabel17)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel4Layout.createSequentialGroup()
-                    .addGap(82, 82, 82)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(443, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -395,7 +396,7 @@ public class edukasiSampah extends javax.swing.JFrame {
 
     private void dashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboardMouseClicked
         dispose();
-        edukasiSampah dashboardPage = new edukasiSampah(username_pengguna, fullname_pengguna);
+        Dashboard dashboardPage = new Dashboard(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboardMouseClicked
