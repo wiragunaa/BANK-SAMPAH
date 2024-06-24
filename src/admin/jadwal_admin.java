@@ -320,8 +320,7 @@ public class jadwal_admin extends javax.swing.JFrame {
                 jenis_sampah = jenis_field.getText();
                 
                 // Memasukkan data ke database
-                query = "INSERT INTO tb_jadwal(hari, tanggal, jenis_sampah) VALUES ('"
-                        +hari+"', '"+tanggal+"', '"+jenis_sampah+"') ";
+                query = "UPDATE tb_jadwal SET hari = '"+hari+"', tanggal = '"+tanggal+"', jenis_sampah = '"+jenis_sampah+"' WHERE id = 1";
                 st.execute(query);
                 
                 showMessageDialog(null, "Berhasil Menambahkan Pengingat!");

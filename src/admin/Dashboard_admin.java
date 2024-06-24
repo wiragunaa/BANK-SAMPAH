@@ -257,6 +257,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void munculkan_konfirmasi(){
+        status_penukaran = status_field.getText();
         if("".equals(status_penukaran) || "Sudah".equals(status_penukaran)){
             konfirmasi_button.setVisible(false);
         } else{
@@ -364,6 +365,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
                 // Mengubah warna menjadi hijau
                 status_field.setText("Sudah");
                 status_field.setForeground(Color.green);
+                munculkan_konfirmasi();
             } catch (Exception e){
                 System.out.println("Error!" + e.getMessage());
             }

@@ -2,6 +2,8 @@ package main_user;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class jadwalPengambilan extends javax.swing.JFrame {
     String username_pengguna;
@@ -10,6 +12,13 @@ public class jadwalPengambilan extends javax.swing.JFrame {
         initComponents();
         username_pengguna = username;
         fullname_pengguna = fullname;
+        
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+         
+        for (int i = 0; i < jTable1.getColumnCount(); i++) {
+            jTable1.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
 
     /**
