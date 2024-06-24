@@ -342,79 +342,89 @@ public class penukaran_admin extends javax.swing.JFrame {
     }//GEN-LAST:event_username_fieldActionPerformed
 
     private void tambah_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_buttonActionPerformed
-        // deklarasi variabel
-        String username = "", catatan = "", query;
-        String SUrl, SUser, SPass;
-        int poin_tambahan = 0, berat_total = 0;
-        
-        // Persiapan database, ganti nama db
-        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
-        SUser = "root";
-        SPass = "";
-        
-        try{
-            // menghubungkan ke database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            Statement st = con.createStatement();
-            
-            // membaca beberapa field
-            username = username_field.getText();
-            poin_tambahan = (int) tambahpoin_field.getValue();
-            berat_total = (int) totalpenukaran_field.getValue();
-            catatan = catatan_field.getText();
-            
-            if("".equals(username_field.getText())){ // jika username kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Username Tidak Boleh Kosong", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if(poin_tambahan == 0){ // jika poin kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Poin Diperlukan", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if(berat_total == 0){ // jika berat kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Banyak Sampah Diperlukan", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if(poin_tambahan < 0 || berat_total < 0 ){
-                JOptionPane.showMessageDialog(new JFrame(), "Poin atau berat harus valid!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else{
-                // buat query untuk mengecek apakah username ada
-                query = "SELECT * FROM tb_pengguna WHERE username_pengguna = '"+username+"' ";
-                
-                // cek apakah di database ada hasilnya
-                int Found = 0;
-                ResultSet rs = st.executeQuery(query);
-                while(rs.next()){
-                    Found = 1;
-                }
-                
-                // jika tidak ada usernamenya, maka pesan error
-                if(Found == 0){
-                    JOptionPane.showMessageDialog(new JFrame(), "Username yang dimasukkan tidak ada!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin memberikan poin?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer == 0){
+            // deklarasi variabel
+            String username = "", catatan = "", query;
+            String SUrl, SUser, SPass;
+            int poin_tambahan = 0, berat_total = 0;
+
+            // Persiapan database, ganti nama db
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+            SUser = "root";
+            SPass = "";
+
+            try{
+                // menghubungkan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+
+                // membaca beberapa field
+                username = username_field.getText();
+                poin_tambahan = (int) tambahpoin_field.getValue();
+                berat_total = (int) totalpenukaran_field.getValue();
+                catatan = catatan_field.getText();
+
+                if("".equals(username_field.getText())){ // jika username kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Username Tidak Boleh Kosong", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(poin_tambahan == 0){ // jika poin kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Poin Diperlukan", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(berat_total == 0){ // jika berat kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Banyak Sampah Diperlukan", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(poin_tambahan < 0 || berat_total < 0 ){
+                    JOptionPane.showMessageDialog(new JFrame(), "Poin atau berat harus valid!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 } else{
-                    // Mencoba print hasil masukan dari user
-                    System.out.println("username pengguna: " + username);
-                    System.out.println(berat_total);
-                    System.out.println(poin_tambahan);
-                    System.out.println(catatan);
-                    
-                    // Masukkan seluruh data ke tabel penukaran atau databse
-                    query = "INSERT INTO tb_penukaran_sampah(username_pengguna, poin_tambahan, berat_total, catatan) VALUES ('"
-                            + username + "', "+poin_tambahan+", "+berat_total+", '"+
-                            catatan+"') ";
-                    st.execute(query);
-                    
-                    // Perbarui data poin pada tabel pengguna
-                    query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + poin_tambahan
-                            + " WHERE username_pengguna = '" + username + "' ";
-                    st.execute(query);
-                    
-                    showMessageDialog(null, "Berhasil Menambahkan Poin!");
+                    // buat query untuk mengecek apakah username ada
+                    query = "SELECT * FROM tb_pengguna WHERE username_pengguna = '"+username+"' ";
+
+                    // cek apakah di database ada hasilnya
+                    int Found = 0;
+                    ResultSet rs = st.executeQuery(query);
+                    while(rs.next()){
+                        Found = 1;
+                    }
+
+                    // jika tidak ada usernamenya, maka pesan error
+                    if(Found == 0){
+                        JOptionPane.showMessageDialog(new JFrame(), "Username yang dimasukkan tidak ada!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    } else{
+                        // Mencoba print hasil masukan dari user
+                        System.out.println("username pengguna: " + username);
+                        System.out.println(berat_total);
+                        System.out.println(poin_tambahan);
+                        System.out.println(catatan);
+
+                        // Masukkan seluruh data ke tabel penukaran atau databse
+                        query = "INSERT INTO tb_penukaran_sampah(username_pengguna, poin_tambahan, berat_total, catatan) VALUES ('"
+                                + username + "', "+poin_tambahan+", "+berat_total+", '"+
+                                catatan+"') ";
+                        st.execute(query);
+
+                        // Perbarui data poin pada tabel pengguna
+                        query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + poin_tambahan
+                                + " WHERE username_pengguna = '" + username + "' ";
+                        st.execute(query);
+
+                        showMessageDialog(null, "Berhasil Menambahkan Poin!");
+                        
+                        // set default
+                        username_field.setText(" ");
+                        catatan_field.setText(" ");
+                        totalpenukaran_field.setValue(0);
+                        tambahpoin_field.setValue(0);
+                    }
                 }
+            } catch (Exception e){
+                System.out.println("Error!" + e.getMessage());
             }
-        } catch (Exception e){
-            System.out.println("Error!" + e.getMessage());
         }
+        
     }//GEN-LAST:event_tambah_buttonActionPerformed
 
     /**
