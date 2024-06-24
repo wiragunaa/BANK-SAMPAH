@@ -2,6 +2,10 @@ package main_user;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class penukaranSampah extends javax.swing.JFrame {
     String username_pengguna;
@@ -12,6 +16,8 @@ public class penukaranSampah extends javax.swing.JFrame {
         fullname_pengguna = fullname;
         username_display.setText("@" + username);
         fullname_display.setText(fullname);
+        
+        ambil_poin();
     }
 
     /**
@@ -44,7 +50,8 @@ public class penukaranSampah extends javax.swing.JFrame {
         username_display = new javax.swing.JLabel();
         fullname_display = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        judul_halaman = new javax.swing.JLabel();
+        poin_display = new javax.swing.JLabel();
+        poin_pengguna = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -221,25 +228,35 @@ public class penukaranSampah extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(241, 204, 27));
         jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
 
-        judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Halaman Penukaran");
+        poin_display.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        poin_display.setForeground(new java.awt.Color(255, 255, 255));
+        poin_display.setText("Poin Pengguna");
+
+        poin_pengguna.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        poin_pengguna.setForeground(new java.awt.Color(255, 51, 51));
+        poin_pengguna.setText("0 PTS");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(poin_display)
+                .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addComponent(judul_halaman)
-                .addGap(42, 42, 42))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(poin_pengguna)
+                .addGap(100, 100, 100))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(judul_halaman, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(poin_display)
+                .addGap(18, 18, 18)
+                .addComponent(poin_pengguna)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -268,6 +285,36 @@ public class penukaranSampah extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ambil_poin(){
+        // mencoba mengambil database
+        try{
+            String SUrl, SUser, SPass, query;
+            String alamat, kabupaten, kecamatan, kelurahan, notelp;
+            int poin_pengguna_temp = 0;
+
+            // isi sesuai dengan database
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah"; // UBAH SESUAI DATABASE
+            SUser = "root";
+            SPass = "";
+
+            // koneksikan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+                
+            // Mengambil poin
+            query = "SELECT poin_pengguna FROM tb_pengguna WHERE username_pengguna = '" + username_pengguna + "'";
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                poin_pengguna_temp = rs.getInt("poin_pengguna");
+            }
+            
+            poin_pengguna.setText(poin_pengguna_temp + " PTS");
+        } catch(Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+    }
+    
     private void profilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseClicked
         dispose();
         profilPengguna profilPage = new profilPengguna(username_pengguna, fullname_pengguna);
@@ -383,10 +430,11 @@ public class penukaranSampah extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel jadwal;
-    private javax.swing.JLabel judul_halaman;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel penukaransampah;
+    private javax.swing.JLabel poin_display;
+    private javax.swing.JLabel poin_pengguna;
     private javax.swing.JLabel profil;
     private javax.swing.JLabel username_display;
     // End of variables declaration//GEN-END:variables
