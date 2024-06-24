@@ -71,7 +71,7 @@ public class penukaranSampah extends javax.swing.JFrame {
         fullname_display2 = new javax.swing.JLabel();
         beras_label1 = new javax.swing.JLabel();
         jumlah_poin1 = new javax.swing.JLabel();
-        lihat_poin = new javax.swing.JButton();
+        reset_poin = new javax.swing.JButton();
         tukarkan_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -220,6 +220,11 @@ public class penukaranSampah extends javax.swing.JFrame {
         jPanel4.add(gambar_beras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 190, 130));
 
         jumlah_beras.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_beras.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_berasStateChanged(evt);
+            }
+        });
         jPanel4.add(jumlah_beras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 190, 30));
 
         angka_poin.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -241,6 +246,11 @@ public class penukaranSampah extends javax.swing.JFrame {
         jPanel4.add(gambar_gula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 190, 130));
 
         jumlah_gula.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_gula.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_gulaStateChanged(evt);
+            }
+        });
         jPanel4.add(jumlah_gula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 190, 30));
 
         mie_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -257,6 +267,11 @@ public class penukaranSampah extends javax.swing.JFrame {
         jPanel4.add(gambar_mie, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 190, 130));
 
         jumlah_mie.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_mie.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_mieStateChanged(evt);
+            }
+        });
         jPanel4.add(jumlah_mie, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 190, 30));
 
         poin_pengguna.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -284,16 +299,16 @@ public class penukaranSampah extends javax.swing.JFrame {
         jumlah_poin1.setText("Total Poin: ");
         jPanel4.add(jumlah_poin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
-        lihat_poin.setBackground(new java.awt.Color(255, 153, 153));
-        lihat_poin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lihat_poin.setForeground(new java.awt.Color(255, 255, 255));
-        lihat_poin.setText("Lihat Poin");
-        lihat_poin.addActionListener(new java.awt.event.ActionListener() {
+        reset_poin.setBackground(new java.awt.Color(255, 153, 153));
+        reset_poin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        reset_poin.setForeground(new java.awt.Color(255, 255, 255));
+        reset_poin.setText("Reset Poin");
+        reset_poin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lihat_poinActionPerformed(evt);
+                reset_poinActionPerformed(evt);
             }
         });
-        jPanel4.add(lihat_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 130, -1));
+        jPanel4.add(reset_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 130, -1));
 
         tukarkan_button.setBackground(new java.awt.Color(120, 148, 97));
         tukarkan_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -458,9 +473,11 @@ public class penukaranSampah extends javax.swing.JFrame {
         logout.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_logoutMouseExited
 
-    private void lihat_poinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lihat_poinActionPerformed
-        hitung_poin();
-    }//GEN-LAST:event_lihat_poinActionPerformed
+    private void reset_poinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_poinActionPerformed
+        jumlah_beras.setValue(0);
+        jumlah_gula.setValue(0);
+        jumlah_mie.setValue(0);
+    }//GEN-LAST:event_reset_poinActionPerformed
 
     private void tukarkan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tukarkan_buttonActionPerformed
         hitung_poin();
@@ -537,6 +554,18 @@ public class penukaranSampah extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tukarkan_buttonActionPerformed
 
+    private void jumlah_berasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_berasStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_berasStateChanged
+
+    private void jumlah_gulaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_gulaStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_gulaStateChanged
+
+    private void jumlah_mieStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_mieStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_mieStateChanged
+
     /**
      * @param args the command line arguments
      */
@@ -571,12 +600,12 @@ public class penukaranSampah extends javax.swing.JFrame {
     private javax.swing.JSpinner jumlah_mie;
     private javax.swing.JLabel jumlah_poin1;
     private javax.swing.JLabel label_pengaturan;
-    private javax.swing.JButton lihat_poin;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel mie_label;
     private javax.swing.JLabel penukaransampah;
     private javax.swing.JLabel poin_pengguna;
     private javax.swing.JLabel profil;
+    private javax.swing.JButton reset_poin;
     private javax.swing.JButton tukarkan_button;
     private javax.swing.JLabel username_display;
     // End of variables declaration//GEN-END:variables
