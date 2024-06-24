@@ -3,10 +3,10 @@ package admin;
 import javax.swing.JOptionPane;
 import Login_Register.*;
 
-public class Dashboard_admin extends javax.swing.JFrame {
+public class jadwal_admin extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
-    public Dashboard_admin(String username, String fullname) {
+    public jadwal_admin(String username, String fullname) {
         initComponents();
         username_pengguna = username;
         fullname_pengguna = fullname;
@@ -291,7 +291,7 @@ public class Dashboard_admin extends javax.swing.JFrame {
 
     private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
         dispose();
-        Dashboard_admin dashboardPage = new Dashboard_admin(username_pengguna, fullname_pengguna);
+        jadwal_admin dashboardPage = new jadwal_admin(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboard_name1MouseClicked

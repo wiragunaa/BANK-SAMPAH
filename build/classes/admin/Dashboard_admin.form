@@ -122,6 +122,7 @@
             <Property name="text" type="java.lang.String" value="Penukaran Sampah"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="penukaranpoin_nameMouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="penukaranpoin_nameMouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="penukaranpoin_nameMouseExited"/>
           </Events>
@@ -170,6 +171,7 @@
             <Property name="text" type="java.lang.String" value="Jadwal Pengambilan Sampah"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jadwal_name1MouseClicked"/>
             <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jadwal_name1MouseEntered"/>
             <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jadwal_name1MouseExited"/>
           </Events>

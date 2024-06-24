@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class profilPengguna extends javax.swing.JFrame {
     String username_pengguna_temp;
@@ -526,6 +527,8 @@ public class profilPengguna extends javax.swing.JFrame {
                 // update notelp pengguna
                 query = "UPDATE tb_pengguna SET nomor_telepon = '"+notelp+"'  WHERE username_pengguna= '"+username_pengguna_temp+"'";
                 st.execute(query);
+                
+                showMessageDialog(null, "Berhasil Mengubah Data Pengguna!");
                 
                 dispose();
                 Dashboard dashboardPage = new Dashboard(username_pengguna_temp, fullname_pengguna_temp);
