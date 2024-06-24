@@ -302,13 +302,13 @@ public class penukaranSampah extends javax.swing.JFrame {
         reset_poin.setBackground(new java.awt.Color(255, 153, 153));
         reset_poin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         reset_poin.setForeground(new java.awt.Color(255, 255, 255));
-        reset_poin.setText("Reset Poin");
+        reset_poin.setText("Reset Barang");
         reset_poin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reset_poinActionPerformed(evt);
             }
         });
-        jPanel4.add(reset_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 130, -1));
+        jPanel4.add(reset_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 150, 40));
 
         tukarkan_button.setBackground(new java.awt.Color(120, 148, 97));
         tukarkan_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -319,7 +319,7 @@ public class penukaranSampah extends javax.swing.JFrame {
                 tukarkan_buttonActionPerformed(evt);
             }
         });
-        jPanel4.add(tukarkan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 490, 210, 50));
+        jPanel4.add(tukarkan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 210, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

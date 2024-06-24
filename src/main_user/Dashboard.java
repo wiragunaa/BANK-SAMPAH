@@ -2,6 +2,12 @@ package main_user;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Dashboard extends javax.swing.JFrame {
     String username_pengguna;
@@ -12,6 +18,8 @@ public class Dashboard extends javax.swing.JFrame {
         fullname_pengguna = fullname;
         username_display.setText("@" + username);
         fullname_display.setText(fullname);
+        
+        isi_reminder();
     }
 
     /**
@@ -44,7 +52,15 @@ public class Dashboard extends javax.swing.JFrame {
         username_display = new javax.swing.JLabel();
         fullname_display = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        judul_halaman = new javax.swing.JLabel();
+        fullname_display1 = new javax.swing.JLabel();
+        hari_label = new javax.swing.JLabel();
+        jenis_label = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        label_utama = new javax.swing.JLabel();
+        hari_label1 = new javax.swing.JLabel();
+        hari_label2 = new javax.swing.JLabel();
+        hari_label3 = new javax.swing.JLabel();
+        hari_label4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,7 +220,7 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(fullname_display)
                             .addComponent(username_display)))
                     .addComponent(jLabel3))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,27 +236,48 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(241, 204, 27));
         jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        judul_halaman.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman.setText("Halaman Dashboard");
+        fullname_display1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        fullname_display1.setForeground(new java.awt.Color(255, 255, 255));
+        fullname_display1.setText("Kumpulkan Sampah:");
+        jPanel3.add(fullname_display1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(judul_halaman)
-                .addGap(42, 42, 42))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(judul_halaman, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
-        );
+        hari_label.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        hari_label.setForeground(new java.awt.Color(255, 255, 255));
+        hari_label.setText("Minggu, 31 Desember 2024");
+        jPanel3.add(hari_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 320, 30));
+
+        jenis_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jenis_label.setForeground(new java.awt.Color(255, 255, 255));
+        jenis_label.setText("Organik");
+        jPanel3.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 30));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        label_utama.setFont(new java.awt.Font("Comic Lemon", 1, 28)); // NOI18N
+        label_utama.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_utama.setText("INFORMASI TERPADU");
+        jPanel4.add(label_utama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 620, -1));
+
+        hari_label1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        hari_label1.setForeground(new java.awt.Color(255, 51, 51));
+        hari_label1.setText("-");
+        jPanel4.add(hari_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 10, -1));
+
+        hari_label2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        hari_label2.setText("Riwayat Penukaran:");
+        jPanel4.add(hari_label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        hari_label3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        hari_label3.setText("Kode Unik Yang Dimiliki:");
+        jPanel4.add(hari_label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        hari_label4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        hari_label4.setForeground(new java.awt.Color(255, 51, 51));
+        hari_label4.setText("-");
+        jPanel4.add(hari_label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 10, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -248,26 +285,66 @@ public class Dashboard extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void isi_reminder(){
+        // deklarasi variabel
+        String hari_temp="", tanggal_temp="", jenis_temp="";
+        String SUrl, SUser, SPass, query;
+
+        // Persiapan database, ganti nama db
+        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+        SUser = "root";
+        SPass = "";
+        try{
+            // menghubungkan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            ResultSet rs;
+            
+            // mencari seluruh data pengingat
+            query = "SELECT * FROM tb_jadwal WHERE id = 1";
+            rs = st.executeQuery(query);
+            
+            while(rs.next()){
+                hari_temp = rs.getString("hari");
+                tanggal_temp = rs.getString("tanggal");
+                jenis_temp = rs.getString("jenis_sampah");
+            }
+            
+            hari_label.setText(hari_temp + ", " + tanggal_temp);
+            jenis_label.setText(jenis_temp);
+            
+        } catch(Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+    }
+    
     private void profilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseClicked
         dispose();
         profilPengguna profilPage = new profilPengguna(username_pengguna, fullname_pengguna);
@@ -370,6 +447,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel edukasi;
     private javax.swing.JLabel fullname_display;
+    private javax.swing.JLabel fullname_display1;
+    private javax.swing.JLabel hari_label;
+    private javax.swing.JLabel hari_label1;
+    private javax.swing.JLabel hari_label2;
+    private javax.swing.JLabel hari_label3;
+    private javax.swing.JLabel hari_label4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -382,9 +465,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel jadwal;
-    private javax.swing.JLabel judul_halaman;
+    private javax.swing.JLabel jenis_label;
     private javax.swing.JLabel label_pengaturan;
+    private javax.swing.JLabel label_utama;
     private javax.swing.JLabel logout;
     private javax.swing.JLabel penukaransampah;
     private javax.swing.JLabel profil;
