@@ -343,6 +343,9 @@
                   <Color blue="66" green="66" red="66" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="password_ulangActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

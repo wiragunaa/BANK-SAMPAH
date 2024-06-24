@@ -158,6 +158,11 @@ public class SignUp extends javax.swing.JFrame {
 
         password_ulang.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         password_ulang.setForeground(new java.awt.Color(102, 102, 102));
+        password_ulang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                password_ulangActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -344,6 +349,10 @@ public class SignUp extends javax.swing.JFrame {
     private void nama_lengkapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nama_lengkapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nama_lengkapActionPerformed
+
+    private void password_ulangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_password_ulangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_password_ulangActionPerformed
 
     /**
      * @param args the command line arguments
