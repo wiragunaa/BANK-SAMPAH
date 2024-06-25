@@ -264,7 +264,7 @@ public class jadwal_admin extends javax.swing.JFrame {
 
     private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
         dispose();
-        jadwal_admin dashboardPage = new jadwal_admin(username_pengguna, fullname_pengguna);
+        Dashboard_admin dashboardPage = new Dashboard_admin(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboard_name1MouseClicked
