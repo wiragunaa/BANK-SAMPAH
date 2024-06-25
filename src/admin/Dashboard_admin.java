@@ -2,16 +2,23 @@ package admin;
 
 import javax.swing.JOptionPane;
 import Login_Register.*;
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.sql.ResultSet;
+import javax.swing.JFrame;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class Dashboard_admin extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
+    String status_penukaran = "";
     public Dashboard_admin(String username, String fullname) {
         initComponents();
         username_pengguna = username;
         fullname_pengguna = fullname;
-        username_display.setText("@" + username);
-        fullname_display.setText(fullname);
+        munculkan_konfirmasi();
     }
 
     /**
@@ -35,13 +42,19 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         logout_name = new javax.swing.JLabel();
         dashboard_name1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        username_display = new javax.swing.JLabel();
-        fullname_display = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        judul_halaman1 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        judul_halaman = new javax.swing.JLabel();
+        username_field = new javax.swing.JTextField();
+        username_label = new javax.swing.JLabel();
+        kodeunik_field = new javax.swing.JTextField();
+        kodeunik_label = new javax.swing.JLabel();
+        listbarang_label = new javax.swing.JLabel();
+        status_label = new javax.swing.JLabel();
+        status_field = new javax.swing.JTextField();
+        konfirmasi_button = new javax.swing.JButton();
+        cari_button = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listbarang_field = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,89 +150,93 @@ public class Dashboard_admin extends javax.swing.JFrame {
         });
         jPanel1.add(dashboard_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
 
-        jPanel2.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel2.setPreferredSize(new java.awt.Dimension(270, 150));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/human_logo_putih.png"))); // NOI18N
+        judul_halaman.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        judul_halaman.setForeground(new java.awt.Color(120, 148, 97));
+        judul_halaman.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        judul_halaman.setText("PENCARIAN DATA PENUKARAN BARANG");
+        jPanel5.add(judul_halaman, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 630, -1));
 
-        username_display.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        username_display.setForeground(new java.awt.Color(255, 255, 255));
-        username_display.setText("@guest");
+        username_field.setEditable(false);
+        username_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        username_field.setForeground(new java.awt.Color(102, 102, 102));
+        username_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(username_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 40));
 
-        fullname_display.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        fullname_display.setForeground(new java.awt.Color(255, 255, 255));
-        fullname_display.setText("guest_full_name");
+        username_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        username_label.setText("Username");
+        jPanel5.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullname_display)
-                            .addComponent(username_display)))
-                    .addComponent(jLabel3))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(username_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fullname_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        kodeunik_field.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        kodeunik_field.setForeground(new java.awt.Color(102, 102, 102));
+        kodeunik_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        kodeunik_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kodeunik_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(kodeunik_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 280, 40));
 
-        jPanel3.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
+        kodeunik_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kodeunik_label.setText("Masukkan Kode Unik");
+        jPanel5.add(kodeunik_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, -1));
 
-        jPanel4.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel4.setPreferredSize(new java.awt.Dimension(270, 150));
+        listbarang_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        listbarang_label.setText("List Barang");
+        jPanel5.add(listbarang_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
 
-        judul_halaman1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        judul_halaman1.setForeground(new java.awt.Color(255, 255, 255));
-        judul_halaman1.setText("HALAMAN ADMIN");
+        status_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        status_label.setText("Status");
+        jPanel5.add(status_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, -1, -1));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(judul_halaman1)
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(judul_halaman1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
-        );
+        status_field.setEditable(false);
+        status_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        status_field.setForeground(new java.awt.Color(102, 102, 102));
+        status_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        status_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                status_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(status_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 190, 40));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        konfirmasi_button.setBackground(new java.awt.Color(120, 148, 97));
+        konfirmasi_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        konfirmasi_button.setForeground(new java.awt.Color(255, 255, 255));
+        konfirmasi_button.setText("KONFIRMASI STATUS");
+        konfirmasi_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                konfirmasi_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(konfirmasi_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 260, 50));
+
+        cari_button.setBackground(new java.awt.Color(120, 148, 97));
+        cari_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cari_button.setForeground(new java.awt.Color(255, 255, 255));
+        cari_button.setText("CARI DATA!");
+        cari_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cari_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cari_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 260, 40));
+
+        listbarang_field.setEditable(false);
+        listbarang_field.setColumns(20);
+        listbarang_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        listbarang_field.setRows(5);
+        jScrollPane2.setViewportView(listbarang_field);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 570, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,26 +244,27 @@ public class Dashboard_admin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addGap(3, 3, 3)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void munculkan_konfirmasi(){
+        status_penukaran = status_field.getText();
+        if("".equals(status_penukaran) || "Sudah".equals(status_penukaran)){
+            konfirmasi_button.setVisible(false);
+        } else{
+            konfirmasi_button.setVisible(true);
+        }
+    }
+    
     private void logout_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseClicked
         int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin logout?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if(answer==0){
@@ -310,29 +328,143 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_jadwal_name1MouseClicked
 
+    private void username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_fieldActionPerformed
+
+    private void kodeunik_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kodeunik_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kodeunik_fieldActionPerformed
+
+    private void status_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_status_fieldActionPerformed
+
+    private void konfirmasi_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_konfirmasi_buttonActionPerformed
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin mengonfirmasi data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer == 0){
+            // deklarasi variabel
+            String SUrl, SUser, SPass, query;
+            int found = 0;
+
+            // Persiapan database, ganti nama db
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+            SUser = "root";
+            SPass = "";
+
+            try{
+                // menghubungkan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+
+                // Mengupdate status dari belum menjadi sudah
+                query = "UPDATE tb_penukaran_barang SET status_pengambilan = 'Sudah' WHERE id_unik= '"+kodeunik_field.getText()+"' ";
+                st.execute(query);
+
+                // Mengubah warna menjadi hijau
+                status_field.setText("Sudah");
+                status_field.setForeground(Color.green);
+                munculkan_konfirmasi();
+            } catch (Exception e){
+                System.out.println("Error!" + e.getMessage());
+            }
+        }
+        
+    }//GEN-LAST:event_konfirmasi_buttonActionPerformed
+
+    private void cari_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cari_buttonActionPerformed
+        // deklarasi variabel
+        String username="", list_barang="", id_unik="";
+        String SUrl, SUser, SPass, query;
+        int found = 0;
+
+        // Persiapan database, ganti nama db
+        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+        SUser = "root";
+        SPass = "";
+
+        try{
+            // menghubungkan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            ResultSet rs;
+            
+            // Mengisi variabel
+            id_unik = kodeunik_field.getText();
+            
+            // Mengambil data sesuai id unik
+            query = "SELECT * FROM tb_penukaran_barang WHERE id_unik = '"+id_unik+"' ";
+            rs = st.executeQuery(query);
+            
+            while(rs.next()){
+                username = rs.getString("username_pengguna");
+                list_barang = rs.getString("list_barang");
+                status_penukaran = rs.getString("status_pengambilan");
+                found = 1;
+            }
+            
+            // jika tidak ketemu keluarkan pesan error
+            if(found == 0){
+                JOptionPane.showMessageDialog(new JFrame(), "Kode Unik Salah!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                kodeunik_field.setText(" ");
+                username_field.setText(" ");
+                listbarang_field.setText(" ");
+                status_field.setText(" ");
+                status_penukaran = "";
+            } else{
+                username_field.setText(username);
+                listbarang_field.setText(list_barang);
+                status_field.setText(status_penukaran);
+                if(status_penukaran.equals("Belum")){
+                    status_field.setForeground(Color.red);
+                } else{
+                    status_field.setForeground(Color.green);
+                }
+            }
+        } catch (Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+        
+        // Menghilangkan atau memunculkan button konfirmasi
+        if("".equals(status_penukaran) || "Sudah".equals(status_penukaran)){
+            konfirmasi_button.setVisible(false);
+        } else{
+            konfirmasi_button.setVisible(true);
+        }
+    }//GEN-LAST:event_cari_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cari_button;
     private javax.swing.JLabel dashboard_name1;
-    private javax.swing.JLabel fullname_display;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jadwal_name1;
-    private javax.swing.JLabel judul_halaman1;
+    private javax.swing.JLabel judul_halaman;
+    private javax.swing.JTextField kodeunik_field;
+    private javax.swing.JLabel kodeunik_label;
+    private javax.swing.JButton konfirmasi_button;
     private javax.swing.JLabel label_pengaturan;
+    private javax.swing.JTextArea listbarang_field;
+    private javax.swing.JLabel listbarang_label;
     private javax.swing.JLabel logout_name;
     private javax.swing.JLabel penukaranpoin_name;
-    private javax.swing.JLabel username_display;
+    private javax.swing.JTextField status_field;
+    private javax.swing.JLabel status_label;
+    private javax.swing.JTextField username_field;
+    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,13 +45,13 @@ public class penukaran_admin extends javax.swing.JFrame {
         username_label = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
         totalpenukaran_label = new javax.swing.JLabel();
-        totalpenukaran_field = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         catatan_field = new javax.swing.JTextArea();
         catatan_label = new javax.swing.JLabel();
         tambah_button = new javax.swing.JButton();
         tambahpoin_label = new javax.swing.JLabel();
-        tambahpoin_field = new javax.swing.JTextField();
+        totalpenukaran_field = new javax.swing.JSpinner();
+        tambahpoin_field = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,14 +166,6 @@ public class penukaran_admin extends javax.swing.JFrame {
         totalpenukaran_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         totalpenukaran_label.setText("Total Penukaran (Kg)");
 
-        totalpenukaran_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        totalpenukaran_field.setForeground(new java.awt.Color(102, 102, 102));
-        totalpenukaran_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                totalpenukaran_fieldActionPerformed(evt);
-            }
-        });
-
         catatan_field.setColumns(20);
         catatan_field.setRows(5);
         jScrollPane1.setViewportView(catatan_field);
@@ -194,39 +186,40 @@ public class penukaran_admin extends javax.swing.JFrame {
         tambahpoin_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         tambahpoin_label.setText("Tambah Poin");
 
+        totalpenukaran_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        totalpenukaran_field.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+
         tambahpoin_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tambahpoin_field.setForeground(new java.awt.Color(102, 102, 102));
-        tambahpoin_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tambahpoin_fieldActionPerformed(evt);
-            }
-        });
+        tambahpoin_field.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 10));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_utama)
-                .addGap(128, 128, 128))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(username_field)
                     .addComponent(jScrollPane1)
-                    .addComponent(tambah_button, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(catatan_label)
-                    .addComponent(username_label)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(totalpenukaran_label)
-                            .addComponent(totalpenukaran_field, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73)
+                            .addComponent(tambah_button, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(catatan_label)
+                            .addComponent(username_label))
+                        .addGap(46, 46, 46))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(totalpenukaran_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(totalpenukaran_field))
+                        .addGap(113, 113, 113)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tambahpoin_label)
-                            .addComponent(tambahpoin_field, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(92, Short.MAX_VALUE))
+                            .addComponent(tambahpoin_field))))
+                .addContainerGap(138, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(label_utama)
+                .addGap(128, 128, 128))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,7 +242,7 @@ public class penukaran_admin extends javax.swing.JFrame {
                 .addComponent(catatan_label)
                 .addGap(7, 7, 7)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(tambah_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39))
         );
@@ -325,7 +318,7 @@ public class penukaran_admin extends javax.swing.JFrame {
 
     private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
         dispose();
-        penukaran_admin dashboardPage = new penukaran_admin(username_pengguna, fullname_pengguna);
+        Dashboard_admin dashboardPage = new Dashboard_admin(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboard_name1MouseClicked
@@ -348,89 +341,91 @@ public class penukaran_admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_username_fieldActionPerformed
 
-    private void totalpenukaran_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalpenukaran_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalpenukaran_fieldActionPerformed
-
     private void tambah_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_buttonActionPerformed
-        // deklarasi variabel
-        String username = "", catatan = "", query;
-        String SUrl, SUser, SPass;
-        String poin_tambahan = "", berat_total = "";
-        
-        // Persiapan database, ganti nama db
-        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
-        SUser = "root";
-        SPass = "";
-        
-        try{
-            // menghubungkan ke database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            Statement st = con.createStatement();
-            
-            // membaca beberapa field
-            username = username_field.getText();
-            poin_tambahan = tambahpoin_field.getText();
-            berat_total = totalpenukaran_field.getText();
-            catatan = catatan_field.getText();
-            
-            if("".equals(username_field.getText())){ // jika username kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Username Tidak Boleh Kosong", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if("".equals(tambahpoin_field.getText())){ // jika poin kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Poin Diperlukan", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if("".equals(totalpenukaran_field.getText())){ // jika berat kosong
-                JOptionPane.showMessageDialog(new JFrame(), "Banyak Sampah Diperlukan", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else if(isNumber(poin_tambahan) == false || isNumber(berat_total) == false || Integer.parseInt(poin_tambahan) < 0 || Integer.parseInt(berat_total) < 0 ){
-                JOptionPane.showMessageDialog(new JFrame(), "Poin atau berat harus valid!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            } else{
-                // buat query untuk mengecek apakah username ada
-                query = "SELECT * FROM tb_pengguna WHERE username_pengguna = '"+username+"' ";
-                
-                // cek apakah di database ada hasilnya
-                int Found = 0;
-                ResultSet rs = st.executeQuery(query);
-                while(rs.next()){
-                    Found = 1;
-                }
-                
-                // jika tidak ada usernamenya, maka pesan error
-                if(Found == 0){
-                    JOptionPane.showMessageDialog(new JFrame(), "Username yang dimasukkan tidak ada!", "Error",
-                        JOptionPane.ERROR_MESSAGE);
-                } else{
-                    // Mencoba print hasil masukan dari user
-                    System.out.println("username pengguna: " + username);
-                    System.out.println(berat_total);
-                    System.out.println(poin_tambahan);
-                    System.out.println(catatan);
-                    
-                    // Masukkan seluruh data ke tabel penukaran atau databse
-                    query = "INSERT INTO tb_penukaran(username_pengguna, poin_tambahan, berat_total, catatan) VALUES ('"
-                            + username + "', "+Integer.parseInt(poin_tambahan)+", "+Integer.parseInt(berat_total)+", '"+
-                            catatan+"') ";
-                    st.execute(query);
-                    
-                    // Perbarui data poin pada tabel pengguna
-                    query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + Integer.parseInt(poin_tambahan)
-                            + " WHERE username_pengguna = '" + username + "' ";
-                    st.execute(query);
-                    
-                    showMessageDialog(null, "Berhasil Menambahkan Poin!");
-                }
-            }
-        } catch (Exception e){
-            System.out.println("Error!" + e.getMessage());
-        }
-    }//GEN-LAST:event_tambah_buttonActionPerformed
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin memberikan poin?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer == 0){
+            // deklarasi variabel
+            String username = "", catatan = "", query;
+            String SUrl, SUser, SPass;
+            int poin_tambahan = 0, berat_total = 0;
 
-    private void tambahpoin_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambahpoin_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tambahpoin_fieldActionPerformed
+            // Persiapan database, ganti nama db
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+            SUser = "root";
+            SPass = "";
+
+            try{
+                // menghubungkan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+
+                // membaca beberapa field
+                username = username_field.getText();
+                poin_tambahan = (int) tambahpoin_field.getValue();
+                berat_total = (int) totalpenukaran_field.getValue();
+                catatan = catatan_field.getText();
+
+                if("".equals(username_field.getText())){ // jika username kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Username Tidak Boleh Kosong", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(poin_tambahan == 0){ // jika poin kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Poin Diperlukan", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(berat_total == 0){ // jika berat kosong
+                    JOptionPane.showMessageDialog(new JFrame(), "Banyak Sampah Diperlukan", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if(poin_tambahan < 0 || berat_total < 0 ){
+                    JOptionPane.showMessageDialog(new JFrame(), "Poin atau berat harus valid!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else{
+                    // buat query untuk mengecek apakah username ada
+                    query = "SELECT * FROM tb_pengguna WHERE username_pengguna = '"+username+"' ";
+
+                    // cek apakah di database ada hasilnya
+                    int Found = 0;
+                    ResultSet rs = st.executeQuery(query);
+                    while(rs.next()){
+                        Found = 1;
+                    }
+
+                    // jika tidak ada usernamenya, maka pesan error
+                    if(Found == 0){
+                        JOptionPane.showMessageDialog(new JFrame(), "Username yang dimasukkan tidak ada!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    } else{
+                        // Mencoba print hasil masukan dari user
+                        System.out.println("username pengguna: " + username);
+                        System.out.println(berat_total);
+                        System.out.println(poin_tambahan);
+                        System.out.println(catatan);
+
+                        // Masukkan seluruh data ke tabel penukaran atau databse
+                        query = "INSERT INTO tb_penukaran_sampah(username_pengguna, poin_tambahan, berat_total, catatan) VALUES ('"
+                                + username + "', "+poin_tambahan+", "+berat_total+", '"+
+                                catatan+"') ";
+                        st.execute(query);
+
+                        // Perbarui data poin pada tabel pengguna
+                        query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + poin_tambahan
+                                + " WHERE username_pengguna = '" + username + "' ";
+                        st.execute(query);
+
+                        showMessageDialog(null, "Berhasil Menambahkan Poin!");
+                        
+                        // set default
+                        username_field.setText(" ");
+                        catatan_field.setText(" ");
+                        totalpenukaran_field.setValue(0);
+                        tambahpoin_field.setValue(0);
+                    }
+                }
+            } catch (Exception e){
+                System.out.println("Error!" + e.getMessage());
+            }
+        }
+        
+    }//GEN-LAST:event_tambah_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -455,9 +450,9 @@ public class penukaran_admin extends javax.swing.JFrame {
     private javax.swing.JLabel logout_name;
     private javax.swing.JLabel penukaranpoin_name;
     private javax.swing.JButton tambah_button;
-    private javax.swing.JTextField tambahpoin_field;
+    private javax.swing.JSpinner tambahpoin_field;
     private javax.swing.JLabel tambahpoin_label;
-    private javax.swing.JTextField totalpenukaran_field;
+    private javax.swing.JSpinner totalpenukaran_field;
     private javax.swing.JLabel totalpenukaran_label;
     private javax.swing.JTextField username_field;
     private javax.swing.JLabel username_label;

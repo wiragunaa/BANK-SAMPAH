@@ -6,10 +6,15 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import javax.swing.JFrame;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 public class penukaranSampah extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
+    int hitung_beras = 0, hitung_gula = 0, hitung_mie = 0, total_poin_penukaran = 0;
+    int poin_pengguna_temp = 0;
+    
     public penukaranSampah(String username, String fullname) {
         initComponents();
         username_pengguna = username;
@@ -17,7 +22,9 @@ public class penukaranSampah extends javax.swing.JFrame {
         username_display.setText("@" + username);
         fullname_display.setText(fullname);
         
-        ambil_poin();
+        // cek poin yang dimiliki pengguna
+        ambil_poin_pengguna();
+        
     }
 
     /**
@@ -45,15 +52,30 @@ public class penukaranSampah extends javax.swing.JFrame {
         dashboard = new javax.swing.JLabel();
         logout = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        username_display = new javax.swing.JLabel();
-        fullname_display = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        poin_display = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        harga_beras = new javax.swing.JLabel();
+        gambar_beras = new javax.swing.JLabel();
+        jumlah_beras = new javax.swing.JSpinner();
+        angka_poin = new javax.swing.JLabel();
+        gula_label = new javax.swing.JLabel();
+        harga_gula = new javax.swing.JLabel();
+        gambar_gula = new javax.swing.JLabel();
+        jumlah_gula = new javax.swing.JSpinner();
+        mie_label = new javax.swing.JLabel();
+        harga_mie = new javax.swing.JLabel();
+        gambar_mie = new javax.swing.JLabel();
+        jumlah_mie = new javax.swing.JSpinner();
         poin_pengguna = new javax.swing.JLabel();
+        fullname_display = new javax.swing.JLabel();
+        username_display = new javax.swing.JLabel();
+        fullname_display2 = new javax.swing.JLabel();
+        beras_label1 = new javax.swing.JLabel();
+        jumlah_poin1 = new javax.swing.JLabel();
+        reset_poin = new javax.swing.JButton();
+        tukarkan_button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(950, 620));
 
         jPanel1.setBackground(new java.awt.Color(80, 98, 58));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -185,79 +207,119 @@ public class penukaranSampah extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/logout_menu.png"))); // NOI18N
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel2.setPreferredSize(new java.awt.Dimension(270, 150));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/human_logo_putih.png"))); // NOI18N
+        harga_beras.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        harga_beras.setForeground(new java.awt.Color(255, 51, 51));
+        harga_beras.setText("300 PTS");
+        jPanel4.add(harga_beras, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 220, -1, -1));
 
-        username_display.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        username_display.setForeground(new java.awt.Color(255, 255, 255));
-        username_display.setText("@guest");
+        gambar_beras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/gambarBeras.jpg"))); // NOI18N
+        gambar_beras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(gambar_beras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 190, 130));
 
-        fullname_display.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        fullname_display.setForeground(new java.awt.Color(255, 255, 255));
-        fullname_display.setText("guest_full_name");
+        jumlah_beras.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_beras.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_berasStateChanged(evt);
+            }
+        });
+        jPanel4.add(jumlah_beras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 190, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fullname_display)
-                            .addComponent(username_display)))
-                    .addComponent(jLabel3))
-                .addContainerGap(101, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(username_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(fullname_display, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        angka_poin.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        angka_poin.setForeground(new java.awt.Color(255, 51, 51));
+        angka_poin.setText("0 PTS");
+        jPanel4.add(angka_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, -1));
 
-        jPanel3.setBackground(new java.awt.Color(241, 204, 27));
-        jPanel3.setPreferredSize(new java.awt.Dimension(270, 150));
+        gula_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        gula_label.setText("Gula (Kg)");
+        jPanel4.add(gula_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, -1, -1));
 
-        poin_display.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        poin_display.setForeground(new java.awt.Color(255, 255, 255));
-        poin_display.setText("Poin Pengguna");
+        harga_gula.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        harga_gula.setForeground(new java.awt.Color(255, 51, 51));
+        harga_gula.setText("250 PTS");
+        jPanel4.add(harga_gula, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+
+        gambar_gula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/gambarGula.jpg"))); // NOI18N
+        gambar_gula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(gambar_gula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 190, 130));
+
+        jumlah_gula.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_gula.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_gulaStateChanged(evt);
+            }
+        });
+        jPanel4.add(jumlah_gula, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 190, 30));
+
+        mie_label.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        mie_label.setText("Mie (Biji)");
+        jPanel4.add(mie_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 220, -1, -1));
+
+        harga_mie.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        harga_mie.setForeground(new java.awt.Color(255, 51, 51));
+        harga_mie.setText("60 PTS");
+        jPanel4.add(harga_mie, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, -1, -1));
+
+        gambar_mie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/gambarMie.png"))); // NOI18N
+        gambar_mie.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.add(gambar_mie, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 250, 190, 130));
+
+        jumlah_mie.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        jumlah_mie.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jumlah_mieStateChanged(evt);
+            }
+        });
+        jPanel4.add(jumlah_mie, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 190, 30));
 
         poin_pengguna.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         poin_pengguna.setForeground(new java.awt.Color(255, 51, 51));
         poin_pengguna.setText("0 PTS");
+        jPanel4.add(poin_pengguna, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(poin_display)
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(poin_pengguna)
-                .addGap(100, 100, 100))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(poin_display)
-                .addGap(18, 18, 18)
-                .addComponent(poin_pengguna)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
+        fullname_display.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        fullname_display.setText("guest_full_name");
+        jPanel4.add(fullname_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 20));
+
+        username_display.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        username_display.setText("@guest");
+        jPanel4.add(username_display, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 20));
+
+        fullname_display2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        fullname_display2.setText("HALAMAN PENUKARAN POIN PENGGUNA");
+        jPanel4.add(fullname_display2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, 30));
+
+        beras_label1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        beras_label1.setText("Beras (Kg)");
+        jPanel4.add(beras_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, -1));
+
+        jumlah_poin1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jumlah_poin1.setText("Total Poin: ");
+        jPanel4.add(jumlah_poin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
+
+        reset_poin.setBackground(new java.awt.Color(255, 153, 153));
+        reset_poin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        reset_poin.setForeground(new java.awt.Color(255, 255, 255));
+        reset_poin.setText("Reset Barang");
+        reset_poin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reset_poinActionPerformed(evt);
+            }
+        });
+        jPanel4.add(reset_poin, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 150, 40));
+
+        tukarkan_button.setBackground(new java.awt.Color(120, 148, 97));
+        tukarkan_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tukarkan_button.setForeground(new java.awt.Color(255, 255, 255));
+        tukarkan_button.setText("TUKARKAN!");
+        tukarkan_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tukarkan_buttonActionPerformed(evt);
+            }
+        });
+        jPanel4.add(tukarkan_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 510, 210, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,32 +327,23 @@ public class penukaranSampah extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ambil_poin(){
+    private void ambil_poin_pengguna(){
         // mencoba mengambil database
         try{
             String SUrl, SUser, SPass, query;
             String alamat, kabupaten, kecamatan, kelurahan, notelp;
-            int poin_pengguna_temp = 0;
 
             // isi sesuai dengan database
             SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah"; // UBAH SESUAI DATABASE
@@ -313,6 +366,17 @@ public class penukaranSampah extends javax.swing.JFrame {
         } catch(Exception e){
             System.out.println("Error!" + e.getMessage());
         }
+    }
+    
+    private void hitung_poin(){
+        // mengambil masing-masing nilai dari spinner
+        hitung_beras = (int) jumlah_beras.getValue();
+        hitung_gula = (int) jumlah_gula.getValue();
+        hitung_mie = (int) jumlah_mie.getValue();
+        
+        // menghitung poin total
+        total_poin_penukaran = hitung_beras*300 + hitung_gula*250 + hitung_mie*60;
+        angka_poin.setText(Integer.toString(total_poin_penukaran));
     }
     
     private void profilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilMouseClicked
@@ -409,17 +473,119 @@ public class penukaranSampah extends javax.swing.JFrame {
         logout.setForeground(new java.awt.Color(255, 255, 255));
     }//GEN-LAST:event_logoutMouseExited
 
+    private void reset_poinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_poinActionPerformed
+        jumlah_beras.setValue(0);
+        jumlah_gula.setValue(0);
+        jumlah_mie.setValue(0);
+    }//GEN-LAST:event_reset_poinActionPerformed
+
+    private void tukarkan_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tukarkan_buttonActionPerformed
+        hitung_poin();
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin menukarkan poin?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer==0){
+            try{
+                String SUrl, SUser, SPass, query, list_barang = "";
+                int cnt = 0;
+
+                // isi sesuai dengan database
+                SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah"; // UBAH SESUAI DATABASE
+                SUser = "root";
+                SPass = "";
+
+                // koneksikan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+                ResultSet rs;
+                
+                // percobaan penukaran barang
+                if(total_poin_penukaran > poin_pengguna_temp){
+                    JOptionPane.showMessageDialog(new JFrame(), "POIN KURANG!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                } else if(hitung_beras == 0 && hitung_gula==0 && hitung_mie == 0){
+                    JOptionPane.showMessageDialog(new JFrame(), "Harap Isi Jumlah Barang!", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                } else{
+                    // Mengurangi poin pengguna yang ditukar
+                    query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna - " + total_poin_penukaran
+                            + " WHERE username_pengguna = '" + username_pengguna + "' ";
+                    st.execute(query);
+                    
+                    // mencari banyak penukaran yang ada
+                    query = "SELECT COUNT(*) FROM tb_penukaran_barang";
+                    rs = st.executeQuery(query);
+                    
+                    while(rs.next()){
+                        cnt = Integer.parseInt(rs.getString("COUNT(*)"));
+                    }
+                    
+                    // Membuat kode unik
+                    String kodeUnik = "PNK0" + Integer.toString(cnt+1);
+                    
+                    // melihat list barang
+                    if(hitung_beras > 0){
+                        list_barang = list_barang + Integer.toString(hitung_beras) + " Kg beras. ";
+                    }
+                    if(hitung_gula > 0){
+                        list_barang = list_barang + Integer.toString(hitung_gula) + " Kg gula. ";
+                    }
+                    if(hitung_mie > 0){
+                        list_barang = list_barang + Integer.toString(hitung_mie) + " buah mie. ";
+                    }
+                    
+                    System.out.println(list_barang);
+                    // Memasukkan ke tabel penukaran barang
+                    query = "INSERT INTO tb_penukaran_barang(id_unik, username_pengguna, poin_ditukarkan, list_barang, status_pengambilan) VALUES ('"
+                            +kodeUnik+"', '"+username_pengguna+"', "+total_poin_penukaran+", '"+list_barang+"', 'Belum')";
+                    st.execute(query);
+                    
+                    // Pesan Penting
+                    showMessageDialog(null, "Berhasil Menukarkan Poin!");
+                    showMessageDialog(null, "Silahkan Sebutkan Kode Unik: "+kodeUnik+" dan Username Pada Saat Penukaran");
+                    
+                    dispose();
+                    Dashboard dashboardPage = new Dashboard(username_pengguna, fullname_pengguna);
+                    dashboardPage.setVisible(true);
+                    dashboardPage.setLocationRelativeTo(null);
+                }
+            } catch(Exception e){
+                System.out.println("Error!" + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_tukarkan_buttonActionPerformed
+
+    private void jumlah_berasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_berasStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_berasStateChanged
+
+    private void jumlah_gulaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_gulaStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_gulaStateChanged
+
+    private void jumlah_mieStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jumlah_mieStateChanged
+        hitung_poin();
+    }//GEN-LAST:event_jumlah_mieStateChanged
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel angka_poin;
+    private javax.swing.JLabel beras_label1;
     private javax.swing.JLabel dashboard;
     private javax.swing.JLabel edukasi;
     private javax.swing.JLabel fullname_display;
+    private javax.swing.JLabel fullname_display2;
+    private javax.swing.JLabel gambar_beras;
+    private javax.swing.JLabel gambar_gula;
+    private javax.swing.JLabel gambar_mie;
+    private javax.swing.JLabel gula_label;
+    private javax.swing.JLabel harga_beras;
+    private javax.swing.JLabel harga_gula;
+    private javax.swing.JLabel harga_mie;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -427,15 +593,20 @@ public class penukaranSampah extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel jadwal;
+    private javax.swing.JSpinner jumlah_beras;
+    private javax.swing.JSpinner jumlah_gula;
+    private javax.swing.JSpinner jumlah_mie;
+    private javax.swing.JLabel jumlah_poin1;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel logout;
+    private javax.swing.JLabel mie_label;
     private javax.swing.JLabel penukaransampah;
-    private javax.swing.JLabel poin_display;
     private javax.swing.JLabel poin_pengguna;
     private javax.swing.JLabel profil;
+    private javax.swing.JButton reset_poin;
+    private javax.swing.JButton tukarkan_button;
     private javax.swing.JLabel username_display;
     // End of variables declaration//GEN-END:variables
 }
