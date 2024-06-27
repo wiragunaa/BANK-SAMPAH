@@ -353,7 +353,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
             
         } catch(Exception e){
-            
+            System.out.println("Error!" + e.getMessage());
         }
     }
     
