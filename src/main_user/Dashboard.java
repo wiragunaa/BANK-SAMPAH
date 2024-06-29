@@ -359,7 +359,7 @@ public class Dashboard extends javax.swing.JFrame {
     
     private void isi_reminder(){
         // deklarasi variabel
-        String hari_temp="", tanggal_temp="", jenis_temp="";
+        String hari_temp="", jenis_temp="";
         String SUrl, SUser, SPass, query;
 
         // Persiapan database, ganti nama db
@@ -378,12 +378,11 @@ public class Dashboard extends javax.swing.JFrame {
             rs = st.executeQuery(query);
             
             while(rs.next()){
-                hari_temp = rs.getString("hari");
-                tanggal_temp = rs.getString("tanggal");
+                hari_temp = rs.getString("hariTanggal");
                 jenis_temp = rs.getString("jenis_sampah");
             }
             
-            hari_label.setText(hari_temp + ", " + tanggal_temp);
+            hari_label.setText(hari_temp);
             jenis_label.setText(jenis_temp);
             
         } catch(Exception e){
