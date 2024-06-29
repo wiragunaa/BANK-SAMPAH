@@ -9,3 +9,4 @@ Cara Menggunakan:
 Note:
 - Terdapat beberapa kasus, project error karena jar belum ada
 - Masukkan file jar jika dibutuhkan pada library (netbeans), bisa mencari referensi dari situs web resmi
+- Pastikan jar dateChooser sudah terpasang
