@@ -96,7 +96,7 @@ public class penukaranSampah extends javax.swing.JFrame {
 
         penukaransampah.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         penukaransampah.setForeground(new java.awt.Color(255, 255, 255));
-        penukaransampah.setText("Penukaran Sampah");
+        penukaransampah.setText("Penukaran Poin");
         penukaransampah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 penukaransampahMouseClicked(evt);
