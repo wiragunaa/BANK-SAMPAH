@@ -268,7 +268,7 @@ public class Dashboard extends javax.swing.JFrame {
         jPanel4.add(listriwayat_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 570, -1));
 
         penukaran_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        penukaran_label.setText("Riwayat Penukaran:");
+        penukaran_label.setText("Jumlah Penukaran:");
         jPanel4.add(penukaran_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
         kode_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
@@ -353,7 +353,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
             
         } catch(Exception e){
-            
+            System.out.println("Error!" + e.getMessage());
         }
     }
     
