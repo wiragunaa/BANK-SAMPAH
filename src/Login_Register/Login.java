@@ -1,6 +1,8 @@
 package Login_Register;
+
 import main_aplikasiBankSampah.*;
 import admin.*;
+import operator.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -244,7 +246,13 @@ public class Login extends javax.swing.JFrame {
                         adminFrame.setVisible(true);
                         adminFrame.setLocationRelativeTo(null);
                         this.dispose();
-                    } else{
+                    } else if(username.equals("Operator")){
+                        Dashboard_operator operatorFrame = new Dashboard_operator(username, fname);
+                        operatorFrame.setVisible(true);
+                        operatorFrame.setLocationRelativeTo(null);
+                        this.dispose();
+                    } 
+                    else{
                         Dashboard HomeFrame = new Dashboard(username, fname);
                         HomeFrame.setVisible(true);
                         HomeFrame.setLocationRelativeTo(null); 

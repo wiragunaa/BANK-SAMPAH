@@ -20,6 +20,7 @@ public class Dashboard extends javax.swing.JFrame {
         fullname_display.setText(fullname);
         
         isi_reminder();
+        isi_informasi();
     }
 
     /**
@@ -57,10 +58,10 @@ public class Dashboard extends javax.swing.JFrame {
         jenis_label = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         label_utama = new javax.swing.JLabel();
-        hari_label1 = new javax.swing.JLabel();
-        hari_label2 = new javax.swing.JLabel();
-        hari_label3 = new javax.swing.JLabel();
-        hari_label4 = new javax.swing.JLabel();
+        listriwayat_label = new javax.swing.JLabel();
+        penukaran_label = new javax.swing.JLabel();
+        kode_label = new javax.swing.JLabel();
+        listkode_label = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +84,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         penukaransampah.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         penukaransampah.setForeground(new java.awt.Color(255, 255, 255));
-        penukaransampah.setText("Penukaran Sampah");
+        penukaransampah.setText("Penukaran Poin");
         penukaransampah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 penukaransampahMouseClicked(evt);
@@ -261,23 +262,23 @@ public class Dashboard extends javax.swing.JFrame {
         label_utama.setText("INFORMASI TERPADU");
         jPanel4.add(label_utama, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 620, -1));
 
-        hari_label1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        hari_label1.setForeground(new java.awt.Color(255, 51, 51));
-        hari_label1.setText("-");
-        jPanel4.add(hari_label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 10, -1));
+        listriwayat_label.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        listriwayat_label.setForeground(new java.awt.Color(255, 51, 51));
+        listriwayat_label.setText("-");
+        jPanel4.add(listriwayat_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 570, -1));
 
-        hari_label2.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        hari_label2.setText("Riwayat Penukaran:");
-        jPanel4.add(hari_label2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+        penukaran_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        penukaran_label.setText("Jumlah Penukaran:");
+        jPanel4.add(penukaran_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
 
-        hari_label3.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        hari_label3.setText("Kode Unik Yang Dimiliki:");
-        jPanel4.add(hari_label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        kode_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kode_label.setText("Kode Unik Yang Dimiliki:");
+        jPanel4.add(kode_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        hari_label4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        hari_label4.setForeground(new java.awt.Color(255, 51, 51));
-        hari_label4.setText("-");
-        jPanel4.add(hari_label4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 10, -1));
+        listkode_label.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        listkode_label.setForeground(new java.awt.Color(255, 51, 51));
+        listkode_label.setText("-");
+        jPanel4.add(listkode_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 570, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -311,6 +312,51 @@ public class Dashboard extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void isi_informasi(){
+         // deklarasi variabel
+        String kode_unik = "";
+        String SUrl, SUser, SPass, query;
+
+        // Persiapan database, ganti nama db
+        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+        SUser = "root";
+        SPass = "";
+        
+        try{
+            // menghubungkan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            ResultSet rs;
+            
+            // mengisi kode unik
+            query = "SELECT id_unik FROM tb_penukaran_barang WHERE username_pengguna = '"+username_pengguna+"' AND status_pengambilan = 'Belum'";
+            rs = st.executeQuery(query);
+            
+            while(rs.next()){
+                kode_unik = kode_unik + rs.getString("id_unik") + " ";
+            }
+            System.out.println(kode_unik);
+            if("".equals(kode_unik)){
+                listkode_label.setText("-");
+            } else{
+                listkode_label.setText(kode_unik);
+            }
+            
+            // mengisi riwayat penukaran
+            query = "SELECT COUNT(*) FROM tb_penukaran_barang WHERE username_pengguna = '"+username_pengguna+"' "+
+                    " GROUP BY username_pengguna";
+            rs = st.executeQuery(query);
+            
+            while(rs.next()){
+                listriwayat_label.setText(rs.getString("COUNT(*)"));
+            }
+            
+        } catch(Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+    }
+    
     private void isi_reminder(){
         // deklarasi variabel
         String hari_temp="", tanggal_temp="", jenis_temp="";
@@ -449,10 +495,6 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel fullname_display;
     private javax.swing.JLabel fullname_display1;
     private javax.swing.JLabel hari_label;
-    private javax.swing.JLabel hari_label1;
-    private javax.swing.JLabel hari_label2;
-    private javax.swing.JLabel hari_label3;
-    private javax.swing.JLabel hari_label4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -468,9 +510,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel jadwal;
     private javax.swing.JLabel jenis_label;
+    private javax.swing.JLabel kode_label;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel label_utama;
+    private javax.swing.JLabel listkode_label;
+    private javax.swing.JLabel listriwayat_label;
     private javax.swing.JLabel logout;
+    private javax.swing.JLabel penukaran_label;
     private javax.swing.JLabel penukaransampah;
     private javax.swing.JLabel profil;
     private javax.swing.JLabel username_display;
