@@ -265,14 +265,14 @@ public class jadwal_operator extends javax.swing.JFrame {
 
     private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
         dispose();
-        Dashboard_admin dashboardPage = new Dashboard_admin(username_pengguna, fullname_pengguna);
+        Dashboard_operator dashboardPage = new Dashboard_operator(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboard_name1MouseClicked
 
     private void penukaranpoin_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_penukaranpoin_nameMouseClicked
         dispose();
-        penukaran_admin penukaranPage = new penukaran_admin(username_pengguna, fullname_pengguna);
+        penukaran_operator penukaranPage = new penukaran_operator(username_pengguna, fullname_pengguna);
         penukaranPage.setVisible(true);
         penukaranPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_penukaranpoin_nameMouseClicked

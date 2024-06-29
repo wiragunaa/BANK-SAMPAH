@@ -13,6 +13,9 @@ import static javax.swing.JOptionPane.showMessageDialog;
 public class penukaran_operator extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
+    String tipe_sampah;
+    int poin_tambahan = 0, berat_total = 0;
+    
     public penukaran_operator(String username, String fullname) {
         initComponents();
         username_pengguna = username;
@@ -45,16 +48,19 @@ public class penukaran_operator extends javax.swing.JFrame {
         label_utama = new javax.swing.JLabel();
         username_label = new javax.swing.JLabel();
         username_field = new javax.swing.JTextField();
-        totalpenukaran_label = new javax.swing.JLabel();
+        totalpoin_label = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         catatan_field = new javax.swing.JTextArea();
         catatan_label = new javax.swing.JLabel();
         tambah_button = new javax.swing.JButton();
-        tambahpoin_label = new javax.swing.JLabel();
         totalpenukaran_field = new javax.swing.JSpinner();
-        tambahpoin_field = new javax.swing.JSpinner();
+        totalpenukaran_label = new javax.swing.JLabel();
+        tipesampah_field = new javax.swing.JComboBox<>();
+        tipesampah_label = new javax.swing.JLabel();
+        totalpoin_field = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(900, 600));
 
         jPanel1.setBackground(new java.awt.Color(80, 98, 58));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -149,12 +155,15 @@ public class penukaran_operator extends javax.swing.JFrame {
         jPanel1.add(dashboard_name1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, 20));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         label_utama.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         label_utama.setText("TAMBAH POIN PENGGUNA");
+        jPanel2.add(label_utama, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, -1, -1));
 
         username_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         username_label.setText("Username");
+        jPanel2.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
 
         username_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         username_field.setForeground(new java.awt.Color(102, 102, 102));
@@ -163,16 +172,21 @@ public class penukaran_operator extends javax.swing.JFrame {
                 username_fieldActionPerformed(evt);
             }
         });
+        jPanel2.add(username_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 510, 40));
 
-        totalpenukaran_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        totalpenukaran_label.setText("Total Penukaran (Kg)");
+        totalpoin_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        totalpoin_label.setText("Total Poin");
+        jPanel2.add(totalpoin_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
 
         catatan_field.setColumns(20);
         catatan_field.setRows(5);
         jScrollPane1.setViewportView(catatan_field);
 
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 250, 100));
+
         catatan_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         catatan_label.setText("Catatan");
+        jPanel2.add(catatan_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
 
         tambah_button.setBackground(new java.awt.Color(120, 148, 97));
         tambah_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -183,70 +197,43 @@ public class penukaran_operator extends javax.swing.JFrame {
                 tambah_buttonActionPerformed(evt);
             }
         });
-
-        tambahpoin_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        tambahpoin_label.setText("Tambah Poin");
+        jPanel2.add(tambah_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 210, 50));
 
         totalpenukaran_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         totalpenukaran_field.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
+        totalpenukaran_field.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                totalpenukaran_fieldStateChanged(evt);
+            }
+        });
+        jPanel2.add(totalpenukaran_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 230, 200, 40));
 
-        tambahpoin_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tambahpoin_field.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 10));
+        totalpenukaran_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        totalpenukaran_label.setText("Total Penukaran (Kg)");
+        jPanel2.add(totalpenukaran_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(username_field)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tambah_button, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(catatan_label)
-                            .addComponent(username_label))
-                        .addGap(46, 46, 46))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(totalpenukaran_label, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(totalpenukaran_field))
-                        .addGap(113, 113, 113)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tambahpoin_label)
-                            .addComponent(tambahpoin_field))))
-                .addContainerGap(138, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(label_utama)
-                .addGap(128, 128, 128))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(label_utama)
-                .addGap(71, 71, 71)
-                .addComponent(username_label)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(username_field, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalpenukaran_label)
-                    .addComponent(tambahpoin_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalpenukaran_field, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tambahpoin_field, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(catatan_label)
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(tambah_button, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
-        );
+        tipesampah_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tipesampah_field.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[Pilih Tipe Sampah]", "Plastik", "Kaleng" }));
+        tipesampah_field.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tipesampah_fieldItemStateChanged(evt);
+            }
+        });
+        tipesampah_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipesampah_fieldActionPerformed(evt);
+            }
+        });
+        jPanel2.add(tipesampah_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, 250, 40));
+
+        tipesampah_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        tipesampah_label.setText("Tipe Sampah");
+        jPanel2.add(tipesampah_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+
+        totalpoin_field.setEditable(false);
+        totalpoin_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        totalpoin_field.setForeground(new java.awt.Color(255, 51, 51));
+        jPanel2.add(totalpoin_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 330, 200, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,7 +242,7 @@ public class penukaran_operator extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,6 +260,19 @@ public class penukaran_operator extends javax.swing.JFrame {
         } catch(Exception e){
             return false;
         }
+    }
+    
+    private void update_field_poin(){
+        tipe_sampah = tipesampah_field.getSelectedItem().toString();
+        berat_total = (int) totalpenukaran_field.getValue();
+        if(tipe_sampah.equals("Plastik")){
+            poin_tambahan = 100*berat_total;
+        } else if (tipe_sampah.equals("Kaleng")){
+            poin_tambahan = 200*berat_total;
+        } else{
+            poin_tambahan = 0;
+        }
+        totalpoin_field.setText(Integer.toString(poin_tambahan));
     }
     
     private void logout_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseClicked
@@ -319,7 +319,7 @@ public class penukaran_operator extends javax.swing.JFrame {
 
     private void dashboard_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dashboard_name1MouseClicked
         dispose();
-        Dashboard_admin dashboardPage = new Dashboard_admin(username_pengguna, fullname_pengguna);
+        Dashboard_operator dashboardPage = new Dashboard_operator(username_pengguna, fullname_pengguna);
         dashboardPage.setVisible(true);
         dashboardPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_dashboard_name1MouseClicked
@@ -333,7 +333,7 @@ public class penukaran_operator extends javax.swing.JFrame {
 
     private void jadwal_name1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jadwal_name1MouseClicked
         dispose();
-        jadwal_admin jadwalPage = new jadwal_admin(username_pengguna, fullname_pengguna);
+        jadwal_operator jadwalPage = new jadwal_operator(username_pengguna, fullname_pengguna);
         jadwalPage.setVisible(true);
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_jadwal_name1MouseClicked
@@ -348,7 +348,8 @@ public class penukaran_operator extends javax.swing.JFrame {
             // deklarasi variabel
             String username = "", catatan = "", query;
             String SUrl, SUser, SPass;
-            int poin_tambahan = 0, berat_total = 0;
+            tipe_sampah = "";
+            berat_total = 0;
 
             // Persiapan database, ganti nama db
             SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
@@ -363,9 +364,16 @@ public class penukaran_operator extends javax.swing.JFrame {
 
                 // membaca beberapa field
                 username = username_field.getText();
-                poin_tambahan = (int) tambahpoin_field.getValue();
+                tipe_sampah = tipesampah_field.getSelectedItem().toString();
                 berat_total = (int) totalpenukaran_field.getValue();
                 catatan = catatan_field.getText();
+                if(tipe_sampah.equals("Plastik")){
+                    poin_tambahan = 100*berat_total;
+                } else if(tipe_sampah.equals("Kaleng")){
+                    poin_tambahan = 200*berat_total;
+                } else{
+                    poin_tambahan = 0;
+                }
 
                 if("".equals(username_field.getText())){ // jika username kosong
                     JOptionPane.showMessageDialog(new JFrame(), "Username Tidak Boleh Kosong", "Error",
@@ -407,18 +415,19 @@ public class penukaran_operator extends javax.swing.JFrame {
                                 catatan+"') ";
                         st.execute(query);
 
-                        // Perbarui data poin pada tabel pengguna
-                        query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + poin_tambahan
-                                + " WHERE username_pengguna = '" + username + "' ";
-                        st.execute(query);
+                        // Perbarui data poin pada tabel pengguna (Ubah ke halaman admin untuk di acc)
+//                        query = "UPDATE tb_pengguna SET poin_pengguna = poin_pengguna + " + poin_tambahan
+//                                + " WHERE username_pengguna = '" + username + "' ";
+//                        st.execute(query);
 
                         showMessageDialog(null, "Berhasil Menambahkan Poin!");
+                        showMessageDialog(null, "Silahkan Hubungi Admin Untuk Diapprove!");
                         
                         // set default
                         username_field.setText(" ");
                         catatan_field.setText(" ");
                         totalpenukaran_field.setValue(0);
-                        tambahpoin_field.setValue(0);
+                        totalpoin_field.setText("0");
                     }
                 }
             } catch (Exception e){
@@ -427,6 +436,18 @@ public class penukaran_operator extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_tambah_buttonActionPerformed
+
+    private void tipesampah_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipesampah_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipesampah_fieldActionPerformed
+
+    private void tipesampah_fieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tipesampah_fieldItemStateChanged
+        update_field_poin();
+    }//GEN-LAST:event_tipesampah_fieldItemStateChanged
+
+    private void totalpenukaran_fieldStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_totalpenukaran_fieldStateChanged
+        update_field_poin();
+    }//GEN-LAST:event_totalpenukaran_fieldStateChanged
 
     /**
      * @param args the command line arguments
@@ -451,10 +472,12 @@ public class penukaran_operator extends javax.swing.JFrame {
     private javax.swing.JLabel logout_name;
     private javax.swing.JLabel penukaranpoin_name;
     private javax.swing.JButton tambah_button;
-    private javax.swing.JSpinner tambahpoin_field;
-    private javax.swing.JLabel tambahpoin_label;
+    private javax.swing.JComboBox<String> tipesampah_field;
+    private javax.swing.JLabel tipesampah_label;
     private javax.swing.JSpinner totalpenukaran_field;
     private javax.swing.JLabel totalpenukaran_label;
+    private javax.swing.JTextField totalpoin_field;
+    private javax.swing.JLabel totalpoin_label;
     private javax.swing.JTextField username_field;
     private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables

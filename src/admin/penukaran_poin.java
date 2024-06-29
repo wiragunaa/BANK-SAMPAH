@@ -5,21 +5,21 @@ import Login_Register.*;
 import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import static javax.swing.JOptionPane.showMessageDialog;
 
-public class Dashboard_admin extends javax.swing.JFrame {
+
+public class penukaran_poin extends javax.swing.JFrame {
     String username_pengguna;
     String fullname_pengguna;
     String status_penukaran = "";
-    public Dashboard_admin(String username, String fullname) {
+    public penukaran_poin(String username, String fullname) {
         initComponents();
         username_pengguna = username;
         fullname_pengguna = fullname;
-        isi_riwayat_sampah();
-        isi_riwayat_poin();
+        munculkan_konfirmasi();
     }
 
     /**
@@ -45,15 +45,19 @@ public class Dashboard_admin extends javax.swing.JFrame {
         dashboard_name1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         judul_halaman = new javax.swing.JLabel();
-        judul_halaman1 = new javax.swing.JLabel();
-        judul_halaman2 = new javax.swing.JLabel();
+        kodeunik_label = new javax.swing.JLabel();
+        kodeunik_field = new javax.swing.JTextField();
+        cari_button = new javax.swing.JButton();
+        konfirmasi_button = new javax.swing.JButton();
+        username_label = new javax.swing.JLabel();
+        username_field = new javax.swing.JTextField();
+        status_label = new javax.swing.JLabel();
+        status_field = new javax.swing.JTextField();
+        listbarang_label = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        penukaranpoin_field = new javax.swing.JTextArea();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        penukaransampah_field = new javax.swing.JTextArea();
+        listbarang_field = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 600));
 
         jPanel1.setBackground(new java.awt.Color(80, 98, 58));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -153,38 +157,87 @@ public class Dashboard_admin extends javax.swing.JFrame {
         judul_halaman.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         judul_halaman.setForeground(new java.awt.Color(120, 148, 97));
         judul_halaman.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul_halaman.setText("LIST PENUKARAN PENGGUNA");
-        jPanel5.add(judul_halaman, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 670, -1));
+        judul_halaman.setText("PENCARIAN DATA PENUKARAN BARANG");
+        jPanel5.add(judul_halaman, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 630, -1));
 
-        judul_halaman1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman1.setForeground(new java.awt.Color(241, 204, 27));
-        judul_halaman1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul_halaman1.setText("LIST PENUKARAN SAMPAH");
-        jPanel5.add(judul_halaman1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 260, -1));
+        kodeunik_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        kodeunik_label.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kodeunik_label.setText("Masukkan Kode Unik");
+        jPanel5.add(kodeunik_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 630, -1));
 
-        judul_halaman2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        judul_halaman2.setForeground(new java.awt.Color(255, 51, 51));
-        judul_halaman2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        judul_halaman2.setText("LIST PENUKARAN POIN");
-        jPanel5.add(judul_halaman2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 220, -1));
+        kodeunik_field.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        kodeunik_field.setForeground(new java.awt.Color(102, 102, 102));
+        kodeunik_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        kodeunik_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                kodeunik_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(kodeunik_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 280, 40));
 
-        penukaranpoin_field.setEditable(false);
-        penukaranpoin_field.setColumns(20);
-        penukaranpoin_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        penukaranpoin_field.setRows(5);
-        penukaranpoin_field.setFocusable(false);
-        jScrollPane2.setViewportView(penukaranpoin_field);
+        cari_button.setBackground(new java.awt.Color(120, 148, 97));
+        cari_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        cari_button.setForeground(new java.awt.Color(255, 255, 255));
+        cari_button.setText("CARI DATA!");
+        cari_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cari_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(cari_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 190, 260, 40));
 
-        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, 300, 350));
+        konfirmasi_button.setBackground(new java.awt.Color(120, 148, 97));
+        konfirmasi_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        konfirmasi_button.setForeground(new java.awt.Color(255, 255, 255));
+        konfirmasi_button.setText("KONFIRMASI STATUS");
+        konfirmasi_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                konfirmasi_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(konfirmasi_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 260, 50));
 
-        penukaransampah_field.setEditable(false);
-        penukaransampah_field.setColumns(20);
-        penukaransampah_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        penukaransampah_field.setRows(5);
-        penukaransampah_field.setFocusable(false);
-        jScrollPane3.setViewportView(penukaransampah_field);
+        username_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        username_label.setText("Username");
+        jPanel5.add(username_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
-        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 300, 350));
+        username_field.setEditable(false);
+        username_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        username_field.setForeground(new java.awt.Color(102, 102, 102));
+        username_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(username_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 190, 40));
+
+        status_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        status_label.setText("Status");
+        jPanel5.add(status_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, -1, -1));
+
+        status_field.setEditable(false);
+        status_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        status_field.setForeground(new java.awt.Color(102, 102, 102));
+        status_field.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        status_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                status_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(status_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 340, 190, 40));
+
+        listbarang_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
+        listbarang_label.setText("List Barang");
+        jPanel5.add(listbarang_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, -1, -1));
+
+        listbarang_field.setEditable(false);
+        listbarang_field.setColumns(20);
+        listbarang_field.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        listbarang_field.setRows(5);
+        jScrollPane2.setViewportView(listbarang_field);
+
+        jPanel5.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 450, 570, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,94 +245,27 @@ public class Dashboard_admin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void isi_riwayat_sampah(){
-        // deklarasi variabel
-        String isi_riwayat = "";
-        String SUrl, SUser, SPass, query;
 
-        // Persiapan database, ganti nama db
-        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
-        SUser = "root";
-        SPass = "";
-        try{
-            // menghubungkan ke database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            Statement st = con.createStatement();
-            ResultSet rs;
-            
-            // mengisi kode unik
-            query = "SELECT * FROM tb_penukaran_sampah WHERE status_penukaran = 'Belum'";
-            rs = st.executeQuery(query);
-            
-            while(rs.next()){
-                isi_riwayat = isi_riwayat + "id:\t" + rs.getString("id") + "\n";
-                isi_riwayat = isi_riwayat + "username:\t" + rs.getString("username_pengguna") + "\n";
-                isi_riwayat = isi_riwayat + "status:\t" + rs.getString("status_penukaran") + "\n\n";
-            }
-            
-            System.out.println(isi_riwayat);
-            if("".equals(isi_riwayat)){
-                penukaransampah_field.setText("Tidak ada penukaran!");
-            } else{
-                penukaransampah_field.setText(isi_riwayat);
-            }
-            
-        } catch(Exception e){
-            System.out.println("Error!" + e.getMessage());
+    public void munculkan_konfirmasi(){
+        status_penukaran = status_field.getText();
+        if("".equals(status_penukaran) || "Sudah".equals(status_penukaran)){
+            konfirmasi_button.setVisible(false);
+        } else{
+            konfirmasi_button.setVisible(true);
         }
     }
-    
-    private void isi_riwayat_poin(){
-        // deklarasi variabel
-        String isi_riwayat = "";
-        String SUrl, SUser, SPass, query;
 
-        // Persiapan database, ganti nama db
-        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
-        SUser = "root";
-        SPass = "";
-        try{
-            // menghubungkan ke database
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
-            Statement st = con.createStatement();
-            ResultSet rs;
-            
-            // mengisi kode unik
-            query = "SELECT * FROM tb_penukaran_barang WHERE status_pengambilan = 'Belum'";
-            rs = st.executeQuery(query);
-            
-            while(rs.next()){
-                isi_riwayat = isi_riwayat + "id_unik:\t" + rs.getString("id_unik") + "\n";
-                isi_riwayat = isi_riwayat + "username:\t" + rs.getString("username_pengguna") + "\n";
-                isi_riwayat = isi_riwayat + "status:\t" + rs.getString("status_pengambilan") + "\n\n";
-            }
-            
-            System.out.println(isi_riwayat);
-            if("".equals(isi_riwayat)){
-                penukaranpoin_field.setText("Tidak ada penukaran!");
-            } else{
-                penukaranpoin_field.setText(isi_riwayat);
-            }
-            
-        } catch(Exception e){
-            System.out.println("Error!" + e.getMessage());
-        }
-    }
-    
     private void logout_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logout_nameMouseClicked
         int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin logout?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if(answer==0){
@@ -343,11 +329,122 @@ public class Dashboard_admin extends javax.swing.JFrame {
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_penukaranpoin_nameMouseClicked
 
+    private void kodeunik_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kodeunik_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kodeunik_fieldActionPerformed
+
+    private void cari_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cari_buttonActionPerformed
+        // deklarasi variabel
+        String username="", list_barang="", id_unik="";
+        String SUrl, SUser, SPass, query;
+        int found = 0;
+
+        // Persiapan database, ganti nama db
+        SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+        SUser = "root";
+        SPass = "";
+
+        try{
+            // menghubungkan ke database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            ResultSet rs;
+
+            // Mengisi variabel
+            id_unik = kodeunik_field.getText();
+
+            // Mengambil data sesuai id unik
+            query = "SELECT * FROM tb_penukaran_barang WHERE id_unik = '"+id_unik+"' ";
+            rs = st.executeQuery(query);
+
+            while(rs.next()){
+                username = rs.getString("username_pengguna");
+                list_barang = rs.getString("list_barang");
+                status_penukaran = rs.getString("status_pengambilan");
+                found = 1;
+            }
+
+            // jika tidak ketemu keluarkan pesan error
+            if(found == 0){
+                JOptionPane.showMessageDialog(new JFrame(), "Kode Unik Salah!", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+                kodeunik_field.setText(" ");
+                username_field.setText(" ");
+                listbarang_field.setText(" ");
+                status_field.setText(" ");
+                status_penukaran = "";
+            } else{
+                username_field.setText(username);
+                listbarang_field.setText(list_barang);
+                status_field.setText(status_penukaran);
+                if(status_penukaran.equals("Belum")){
+                    status_field.setForeground(Color.red);
+                } else{
+                    status_field.setForeground(Color.green);
+                }
+            }
+        } catch (Exception e){
+            System.out.println("Error!" + e.getMessage());
+        }
+
+        // Menghilangkan atau memunculkan button konfirmasi
+        if("".equals(status_penukaran) || "Sudah".equals(status_penukaran)){
+            konfirmasi_button.setVisible(false);
+        } else{
+            konfirmasi_button.setVisible(true);
+        }
+    }//GEN-LAST:event_cari_buttonActionPerformed
+
+    private void konfirmasi_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_konfirmasi_buttonActionPerformed
+        int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin mengonfirmasi data?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if(answer == 0){
+            // deklarasi variabel
+            String SUrl, SUser, SPass, query;
+            int found = 0;
+
+            // Persiapan database, ganti nama db
+            SUrl = "jdbc:MySQL://localhost:3306/db_pengguna_banksampah";
+            SUser = "root";
+            SPass = "";
+
+            try{
+                // menghubungkan ke database
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+                Statement st = con.createStatement();
+
+                // Mengupdate status dari belum menjadi sudah
+                query = "UPDATE tb_penukaran_barang SET status_pengambilan = 'Sudah' WHERE id_unik= '"+kodeunik_field.getText()+"' ";
+                st.execute(query);
+                
+                showMessageDialog(null, "Berhasil Menukarkan Poin!");
+                
+                // Mengubah warna menjadi hijau
+                status_field.setText("Sudah");
+                status_field.setForeground(Color.green);
+                munculkan_konfirmasi();
+            } catch (Exception e){
+                System.out.println("Error!" + e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_konfirmasi_buttonActionPerformed
+
+    private void username_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username_fieldActionPerformed
+
+    private void status_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_status_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_status_fieldActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cari_button;
     private javax.swing.JLabel dashboard_name1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -358,15 +455,19 @@ public class Dashboard_admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel judul_halaman;
-    private javax.swing.JLabel judul_halaman1;
-    private javax.swing.JLabel judul_halaman2;
+    private javax.swing.JTextField kodeunik_field;
+    private javax.swing.JLabel kodeunik_label;
+    private javax.swing.JButton konfirmasi_button;
     private javax.swing.JLabel label_pengaturan;
+    private javax.swing.JTextArea listbarang_field;
+    private javax.swing.JLabel listbarang_label;
     private javax.swing.JLabel logout_name;
-    private javax.swing.JTextArea penukaranpoin_field;
     private javax.swing.JLabel penukaranpoin_name;
-    private javax.swing.JTextArea penukaransampah_field;
     private javax.swing.JLabel penukaransampah_name;
+    private javax.swing.JTextField status_field;
+    private javax.swing.JLabel status_label;
+    private javax.swing.JTextField username_field;
+    private javax.swing.JLabel username_label;
     // End of variables declaration//GEN-END:variables
 }
