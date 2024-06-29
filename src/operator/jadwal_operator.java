@@ -29,6 +29,7 @@ public class jadwal_operator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -43,13 +44,14 @@ public class jadwal_operator extends javax.swing.JFrame {
         dashboard_name1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         label_utama = new javax.swing.JLabel();
-        tanggal_label = new javax.swing.JLabel();
-        tanggal_field = new javax.swing.JTextField();
         hari_label = new javax.swing.JLabel();
         hari_field = new javax.swing.JTextField();
         jenis_label = new javax.swing.JLabel();
-        jenis_field = new javax.swing.JTextField();
         tambah_button = new javax.swing.JButton();
+        jenis_field = new javax.swing.JComboBox<>();
+        tanggal_button = new javax.swing.JButton();
+
+        dateChooser1.setTextRefernce(hari_field);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -153,25 +155,13 @@ public class jadwal_operator extends javax.swing.JFrame {
         label_utama.setText("TAMBAHKAN PENGINGAT JADWAL");
         jPanel5.add(label_utama, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 30, 620, -1));
 
-        tanggal_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        tanggal_label.setText("Tanggal");
-        jPanel5.add(tanggal_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
-
-        tanggal_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tanggal_field.setForeground(new java.awt.Color(102, 102, 102));
-        tanggal_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tanggal_fieldActionPerformed(evt);
-            }
-        });
-        jPanel5.add(tanggal_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 310, 40));
-
         hari_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
-        hari_label.setText("Hari");
+        hari_label.setText("Hari, Tanggal");
         jPanel5.add(hari_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         hari_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         hari_field.setForeground(new java.awt.Color(102, 102, 102));
+        hari_field.setFocusable(false);
         hari_field.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hari_fieldActionPerformed(evt);
@@ -181,16 +171,7 @@ public class jadwal_operator extends javax.swing.JFrame {
 
         jenis_label.setFont(new java.awt.Font("Arial", 1, 20)); // NOI18N
         jenis_label.setText("Jenis Sampah");
-        jPanel5.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
-
-        jenis_field.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jenis_field.setForeground(new java.awt.Color(102, 102, 102));
-        jenis_field.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jenis_fieldActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jenis_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 310, 40));
+        jPanel5.add(jenis_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
 
         tambah_button.setBackground(new java.awt.Color(120, 148, 97));
         tambah_button.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -202,6 +183,22 @@ public class jadwal_operator extends javax.swing.JFrame {
             }
         });
         jPanel5.add(tambah_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 230, 50));
+
+        jenis_field.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Jenis Sampah", "Organik", "Daur Ulang", "Residu" }));
+        jenis_field.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jenis_fieldActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jenis_field, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 310, 40));
+
+        tanggal_button.setText("...");
+        tanggal_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tanggal_buttonActionPerformed(evt);
+            }
+        });
+        jPanel5.add(tanggal_button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,17 +281,9 @@ public class jadwal_operator extends javax.swing.JFrame {
         jadwalPage.setLocationRelativeTo(null);
     }//GEN-LAST:event_jadwal_name1MouseClicked
 
-    private void tanggal_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tanggal_fieldActionPerformed
-
     private void hari_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hari_fieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_hari_fieldActionPerformed
-
-    private void jenis_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenis_fieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jenis_fieldActionPerformed
 
     private void tambah_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tambah_buttonActionPerformed
         int answer = JOptionPane.showConfirmDialog(null, "Apakah anda ingin memberikan pengingat?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -317,19 +306,17 @@ public class jadwal_operator extends javax.swing.JFrame {
                 
                 // mengisi variabel
                 hari = hari_field.getText();
-                tanggal = tanggal_field.getText();
-                jenis_sampah = jenis_field.getText();
+                jenis_sampah = jenis_field.getSelectedItem().toString();
                 
                 // Memasukkan data ke database
-                query = "UPDATE tb_jadwal SET hari = '"+hari+"', tanggal = '"+tanggal+"', jenis_sampah = '"+jenis_sampah+"' WHERE id = 1";
+                query = "UPDATE tb_jadwal SET hariTanggal = '"+hari+"', jenis_sampah = '"+jenis_sampah+"' WHERE id = 1";
                 st.execute(query);
-                
+                System.out.println(hari);
                 showMessageDialog(null, "Berhasil Menambahkan Pengingat!");
                 
                 // set ke default
                 hari_field.setText(" ");
-                tanggal_field.setText(" ");
-                jenis_field.setText(" ");
+                jenis_field.setSelectedItem(" ");
             } catch (Exception e){
                 System.out.println("Error!" + e.getMessage());
             }
@@ -337,12 +324,21 @@ public class jadwal_operator extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tambah_buttonActionPerformed
 
+    private void jenis_fieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jenis_fieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jenis_fieldActionPerformed
+
+    private void tanggal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_buttonActionPerformed
+        dateChooser1.showPopup();
+    }//GEN-LAST:event_tanggal_buttonActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dashboard_name1;
+    private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.JTextField hari_field;
     private javax.swing.JLabel hari_label;
     private javax.swing.JLabel jLabel1;
@@ -354,14 +350,13 @@ public class jadwal_operator extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel jadwal_name1;
-    private javax.swing.JTextField jenis_field;
+    private javax.swing.JComboBox<String> jenis_field;
     private javax.swing.JLabel jenis_label;
     private javax.swing.JLabel label_pengaturan;
     private javax.swing.JLabel label_utama;
     private javax.swing.JLabel logout_name;
     private javax.swing.JLabel penukaranpoin_name;
     private javax.swing.JButton tambah_button;
-    private javax.swing.JTextField tanggal_field;
-    private javax.swing.JLabel tanggal_label;
+    private javax.swing.JButton tanggal_button;
     // End of variables declaration//GEN-END:variables
 }
