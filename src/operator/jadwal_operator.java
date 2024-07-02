@@ -29,7 +29,7 @@ public class jadwal_operator extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooser1 = new com.raven.datechooser.DateChooser();
+        dateChooser2 = new com.raven.datechooser.DateChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +51,7 @@ public class jadwal_operator extends javax.swing.JFrame {
         jenis_field = new javax.swing.JComboBox<>();
         tanggal_button = new javax.swing.JButton();
 
-        dateChooser1.setTextRefernce(hari_field);
+        dateChooser2.setTextRefernce(hari_field);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -308,15 +308,25 @@ public class jadwal_operator extends javax.swing.JFrame {
                 hari = hari_field.getText();
                 jenis_sampah = jenis_field.getSelectedItem().toString();
                 
-                // Memasukkan data ke database
-                query = "UPDATE tb_jadwal SET hariTanggal = '"+hari+"', jenis_sampah = '"+jenis_sampah+"' WHERE id = 1";
-                st.execute(query);
-                System.out.println(hari);
-                showMessageDialog(null, "Berhasil Menambahkan Pengingat!");
+                if("".equals(hari)){
+                    JOptionPane.showMessageDialog(new JFrame(), "Tanggal Tidak Boleh Kosong", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else if (jenis_sampah.equals("Pilih Jenis Sampah") || "".equals(jenis_sampah)){
+                    JOptionPane.showMessageDialog(new JFrame(), "Silahkan Pilih Jenis Sampah!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                } else{
+                    // Memasukkan data ke database
+                    query = "UPDATE tb_jadwal SET hariTanggal = '"+hari+"', jenis_sampah = '"+jenis_sampah+"' WHERE id = 1";
+                    st.execute(query);
+                    System.out.println(hari);
+                    showMessageDialog(null, "Berhasil Menambahkan Pengingat!");
+
+                    // set ke default
+                    hari_field.setText("");
+                    jenis_field.setSelectedItem("");
+                }
                 
-                // set ke default
-                hari_field.setText(" ");
-                jenis_field.setSelectedItem(" ");
+                
             } catch (Exception e){
                 System.out.println("Error!" + e.getMessage());
             }
@@ -329,7 +339,7 @@ public class jadwal_operator extends javax.swing.JFrame {
     }//GEN-LAST:event_jenis_fieldActionPerformed
 
     private void tanggal_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tanggal_buttonActionPerformed
-        dateChooser1.showPopup();
+        dateChooser2.showPopup();
     }//GEN-LAST:event_tanggal_buttonActionPerformed
 
     /**
@@ -338,7 +348,7 @@ public class jadwal_operator extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dashboard_name1;
-    private com.raven.datechooser.DateChooser dateChooser1;
+    private com.raven.datechooser.DateChooser dateChooser2;
     private javax.swing.JTextField hari_field;
     private javax.swing.JLabel hari_label;
     private javax.swing.JLabel jLabel1;
